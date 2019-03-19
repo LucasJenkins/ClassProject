@@ -12,5 +12,7 @@ namespace FinalProjectServer.Services
         File CreateFile(string name, string data, string folder);
         bool DeleteFileById(int id);
         bool DeleteMultipleFilesByIds(params int[] ids);
+        bool UpdateFileById(int id);
+        bool UpdateFilesByIds(params int[] ids);
     }
 }

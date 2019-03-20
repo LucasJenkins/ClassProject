@@ -1,9 +1,13 @@
 {
   "version": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "K2qRRGT7QPDnaNNR8N7wOnHbcpMKPNmkrrxNiu8vPGbS3379I6k0MVmFRhy/AJxoqSFuR6KnPc3e8oizTK4nUA==",
 =======
   "dgSpecHash": "KQJsd4gq3aGs8gixEjihUVy8fOLWPuehW39ywRpBbO0Kvp+zkYsYvwSHQWxwPG5bZ8DXkfju38fJJh3/Phk//g==",
 >>>>>>> 8386c67701a08e35d603fe13b0f04a3b9aa38b75
+=======
+  "dgSpecHash": "K2qRRGT7QPDnaNNR8N7wOnHbcpMKPNmkrrxNiu8vPGbS3379I6k0MVmFRhy/AJxoqSFuR6KnPc3e8oizTK4nUA==",
+>>>>>>> client
   "success": true
 }

@@ -16,5 +16,6 @@ namespace FinalProjectServer.Services
         //bool UpdateFiles(int[] id);
 
         bool UpdateFilesByIds(params int[] ids);
+        object GetFiles();
     }
 }

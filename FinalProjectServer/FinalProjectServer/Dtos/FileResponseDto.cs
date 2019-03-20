@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FinalProjectServer.Dtos
 {
-    public class FileDto
+    public class FileResponseDto
     {
         public int Id { get; set; }
 

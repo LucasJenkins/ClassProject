@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FinalProjectServer.Dtos;
+using FinalProjectServer.Services;
 using Microsoft.AspNetCore.Mvc;
+using FinalProjectServer.Data.Entities;
 
 namespace FinalProjectServer.Controllers
 {

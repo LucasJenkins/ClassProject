@@ -4,15 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FinalProjectServer.Data;
+using FinalProjectServer.Data.Entities;
 
 namespace FinalProjectServer.Services
 {
 
-    public class FoldersServices : IFoldersServices
+    public class FolderService : IFolderService
     {
         private FinalProjectContext _context;
         
-        public FoldersServices(FinalProjectContext context)
+        public FolderService(FinalProjectContext context)
         {
             _context = context;
         }

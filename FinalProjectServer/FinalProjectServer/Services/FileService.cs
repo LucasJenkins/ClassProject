@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FinalProjectServer.Data;
-
+using FinalProjectServer.Data.Entities;
 
 namespace FinalProjectServer.Services
 {
-    public class FilesServices : IFilesServices
+    public class FileService : IFileService
     {
         private FinalProjectContext _context;
 
-        public FilesServices(FinalProjectContext context)
+        public FileService(FinalProjectContext context)
         {
             _context = context;
         }

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FinalProjectServer.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace FinalProjectServer.Services
 {
-    interface IFoldersServices
+    interface IFolderService
     {
         Folder GetFolderById(int id);
         List<Folder> GetMultipleFoldersByIds(params int[] ids);

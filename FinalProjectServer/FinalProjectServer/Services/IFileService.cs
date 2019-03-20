@@ -8,8 +8,7 @@ namespace FinalProjectServer.Services
 {
     public interface IFileService
     {
-        File GetFileById(int id);
-        List<File> GetMultipleFilesByIds(params int[] ids);
+        List<File> GetFilesByIds(params int[] ids);
         File CreateFile(string name, string data, string folder);
         bool DeleteFileById(int id);
         bool DeleteMultipleFilesByIds(params int[] ids);

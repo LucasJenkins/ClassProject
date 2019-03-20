@@ -33,19 +33,20 @@ namespace FinalProjectServer.Services
             throw new NotImplementedException();
         }
 
-        public File GetFileById(int id)
+        public List<File> GetFilesByIds(params int[] ids)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<File> GetMultipleFiles(params int[] ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<File> GetMultipleFilesByIds(params int[] ids)
-        {
-            throw new NotImplementedException();
+            var files = new List<File>();
+            File file = _context.Files.SingleOrDefault(f => f.Id == );
+            foreach(int i in ids)
+            {
+                file = _context.Files.SingleOrDefault(f => f.Id == i);
+                if (file == null || file.IsTrash)
+                {
+                    //Exception goes here
+                }
+                files.Add(file);
+            }
+            return files;
         }
 
         public bool UpdateFileById(int id)

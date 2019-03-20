@@ -13,30 +13,21 @@ namespace FinalProjectServer.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        private IFileService _fileService { get; }
-        public FilesController(IFileService fileService) : base()
+        private IFileService _fileService;
+        private IMapper _mapper;
+        public FilesController(IFileService fileService, IMapper mapper) : base()
         {
             _fileService = fileService;
-        }
-
-        // GET api/files
-        [HttpGet]
-        public ActionResult<IEnumerable<FileResponseDto>> Get()
-        {
-            var files = _fileService.GetFiles();
-            var filesResponse = new List<FileResponseDto>();
-            foreach (var file in files)
-            {
-
-            }
-            return new FileResponseDto(file);
+            _mapper = mapper;
         }
 
         // GET api/files/5
         [HttpGet("{id}")]
-        public ActionResult<FileResponseDto> Get(int id)
+        [ProducesResponseType(404)]
+        public ActionResult<FileResponseDto> Get(int[] id)
         {
-            return _fileService.GetFileById(id);
+            var file = _fileService.GetFilesByIds(id);
+            return _mapper.Map<FileResponseDto>(file);
         }
 
         // POST api/files

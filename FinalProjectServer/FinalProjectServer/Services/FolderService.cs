@@ -37,9 +37,20 @@ namespace FinalProjectServer.Services
             throw new NotImplementedException();
         }
 
-        public List<Folder> GetMultipleFoldersByIds(params int[] ids)
+        public List<Folder> GetFoldersByIds(params int[] ids)
         {
-            throw new NotImplementedException();
+            var folders = new List<Folder>();
+            File folder;
+            foreach (int i in ids)
+            {
+                folder = _context.Folders.SingleOrDefault(f => f.Id == i);
+                if (folder == null || folder.IsTrash)
+                {
+                    //Exception goes here
+                }
+                folders.Add(folder);
+            }
+            return folders;
         }
 
         public bool UpdateFolderById(int id)

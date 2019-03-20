@@ -6,6 +6,7 @@ using FinalProjectServer.Dtos;
 using FinalProjectServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using FinalProjectServer.Data.Entities;
+using FinalProjectServer.AutoMapperFile;
 
 namespace FinalProjectServer.Controllers
 {
@@ -15,6 +16,7 @@ namespace FinalProjectServer.Controllers
     {
         private IFileService _fileService;
         private IMapper _mapper;
+
         public FilesController(IFileService fileService, IMapper mapper) : base()
         {
             _fileService = fileService;
@@ -23,6 +25,7 @@ namespace FinalProjectServer.Controllers
 
         // GET api/files/5
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public ActionResult<FileResponseDto> Get(int[] id)
         {

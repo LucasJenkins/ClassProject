@@ -57,5 +57,37 @@ namespace FinalProjectServer.Services
         {
             throw new NotImplementedException();
         }
+
+        File IFileService.CreateFile(string name, string data, string folder)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IFileService.DeleteFileById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IFileService.DeleteMultipleFilesByIds(params int[] ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        File IFileService.GetFileById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<File> IFileService.GetMultipleFilesByIds(params int[] ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        bool IFileService.UpdateFilesByIds(params int[] ids)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

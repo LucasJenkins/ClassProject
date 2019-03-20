@@ -1,0 +1,14 @@
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\bin\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.deps.json
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\bin\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.runtimeconfig.json
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\bin\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.runtimeconfig.dev.json
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\bin\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.dll
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\bin\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.pdb
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.csprojAssemblyReference.cache
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.csproj.CoreCompileInputs.cache
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.RazorAssemblyInfo.cache
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.RazorAssemblyInfo.cs
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.AssemblyInfoInputs.cache
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.AssemblyInfo.cs
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.RazorTargetAssemblyInfo.cache
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.dll
+C:\Users\cagbo\Desktop\PROJECTS\final-project\FinalProjectServer\DotnetAssessmentSocialMedia\obj\Debug\netcoreapp2.1\DotnetAssessmentSocialMedia.pdb

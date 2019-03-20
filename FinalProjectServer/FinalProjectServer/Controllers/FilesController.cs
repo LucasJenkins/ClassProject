@@ -45,5 +45,9 @@ namespace FinalProjectServer.Controllers
         {
             var file = _fileService.CreateFile();
         }
+
+        [HttpDelete]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
     }
 }

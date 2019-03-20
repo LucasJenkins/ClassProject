@@ -23,7 +23,7 @@ namespace FinalProjectServer.Services
             throw new NotImplementedException();
         }
 
-        public bool DeleteFileById(int id)
+        public bool DeleteFile(int[]id)
         {
             throw new NotImplementedException();
         }

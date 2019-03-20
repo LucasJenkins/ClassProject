@@ -17,6 +17,6 @@ namespace FinalProjectServer.Data.Entities
 
         public string Hash { get; set; }
 
-        public bool Deleted { get; set; }
+        public bool IsTrash { get; set; }
     }
 }

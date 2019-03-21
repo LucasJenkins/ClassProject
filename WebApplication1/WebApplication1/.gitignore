@@ -1,11 +1,13 @@
 /build/
+.vscode/
+.vs/
 *.suo
 *.user
 _ReSharper.*/
 *.sdf
 bin/
 obj/
-obj/Debug
+obj/Debug/
 Debug/
 Release/
 StorageRoot/

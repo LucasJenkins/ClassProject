@@ -36,7 +36,7 @@ namespace FinalProjectServer.Services
         public List<File> GetFilesByIds(params int[] ids)
         {
             var files = new List<File>();
-            File file = _context.Files.SingleOrDefault(f => f.Id == );
+            File file;
             foreach(int i in ids)
             {
                 file = _context.Files.SingleOrDefault(f => f.Id == i);

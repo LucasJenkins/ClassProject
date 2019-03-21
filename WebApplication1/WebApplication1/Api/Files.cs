@@ -13,34 +13,45 @@ namespace WebApplication1.Api
 
         }
 
+        // Lucas Jenkins - Only overwrites data. Returns only bool upon completion 
         public bool WriteToFile(string path, string data)
         {
-            var fullPath = @"C:\Users\ftd-04\Desktop\final_project\final-project\WebApplication1\WebApplication1\StorageFolder\" + path;
-            var decodedData = Decode(data);
-
-            if (!File.Exists(fullPath))
+            try
             {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(fullPath))
-                {
-                    sw.WriteLine("Hello");
-                }
+                var fullPath = @".\StorageFolder\" + path;
+                var decodedData = Decode(data);
+                File.WriteAllText(fullPath, decodedData);
                 return true;
             }
-            return false;
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
+        // Lucas Jenkins - Will return empty string if file does not exisit
         public string ReadFromFile(string path)
         {
-            var fullPath = @"C:\Users\ftd-04\Desktop\final_project\final-project\WebApplication1\WebApplication1\StorageFolder\" + path;
-            var data = "";
-            if (File.Exists(fullPath))
+            try
             {
-                data = File.ReadAllText(fullPath);
-                var encodedData = Encode(data);
-                return encodedData;
+                var fullPath = @".\StorageFolder\" + path;
+                var data = "";
+                if (File.Exists(fullPath))
+                {
+                    data = File.ReadAllText(fullPath);
+                    var encodedData = Encode(data);
+                    return encodedData;
+                }
+                return data;
             }
-            return data;
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "";
+            }
+
         }
 
         public static string Encode(string plainText)

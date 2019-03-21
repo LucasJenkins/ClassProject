@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using FinalProjectFileManager.Api;
 using FinalProjectFileManager.Data;
 using FinalProjectFileManager.Data.Entities;
 using FinalProjectFileManager.Dtos;
@@ -51,7 +52,7 @@ namespace FinalProjectFileManager.Services
                 newFile.Created = DateTime.Now;
                 newFile.IsTrash = false;
                 newFile.Hash = Guid.NewGuid().ToString();
-
+                Files.WriteToFile(newFile.Hash, file.Data);
                 _context.StorageItem.Add(newFile);
                 _context.SaveChanges();
 

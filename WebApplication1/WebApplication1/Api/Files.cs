@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.IO;
 
-namespace WebApplication1.Api
-{
-    public class Files
+
+namespace FinalProjectFileManager.Api
     {
-        public Files()
+        public static class Files
         {
 
-        }
-
-        // Lucas Jenkins - Only overwrites data. Returns only bool upon completion 
-        public bool WriteToFile(string path, string data)
-        {
-            try
-            {
-                var fullPath = @".\StorageFolder\" + path;
-                var decodedData = Decode(data);
-                File.WriteAllText(fullPath, decodedData);
+            // Lucas Jenkins - Only overwrites data. Returns only bool upon completion 
+            public static bool WriteToFile(string path, string data)
+                {
+                    try
+                    {
+                        var fullPath = "./StorageRoot/" + path;
+                // var decodedData = Decode(data);
+                File.WriteAllText(fullPath, data);
                 return true;
             }
-            catch(Exception e)
+            catch(IOException e)
             {
                 Console.WriteLine(e.Message);
                 return false;
@@ -32,11 +29,11 @@ namespace WebApplication1.Api
         }
 
         // Lucas Jenkins - Will return empty string if file does not exisit
-        public string ReadFromFile(string path)
+        public static string ReadFromFile(string path)
         {
             try
             {
-                var fullPath = @".\StorageFolder\" + path;
+                var fullPath = "./StorageRoot/" + path;
                 var data = "";
                 if (File.Exists(fullPath))
                 {
@@ -46,7 +43,7 @@ namespace WebApplication1.Api
                 }
                 return data;
             }
-            catch(Exception e)
+            catch(IOException e)
             {
                 Console.WriteLine(e.Message);
                 return "";

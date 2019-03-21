@@ -127,8 +127,6 @@ namespace FinalProjectFileManager.Services
             {
                 Console.WriteLine("Error deleting file");
             }
-           
-
         }
 
 //Changes by Chris
@@ -138,7 +136,6 @@ namespace FinalProjectFileManager.Services
             {
                 DeleteFile(i);
             }
-
         }
 
         public FileService(FileManagerContext context, ILogger<FileService> logger)
@@ -146,6 +143,5 @@ namespace FinalProjectFileManager.Services
             _context = context;
             _logger = logger;
         }
-
     }
 }

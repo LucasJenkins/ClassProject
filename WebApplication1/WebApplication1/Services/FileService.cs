@@ -12,7 +12,7 @@ namespace FinalProjectFileManager.Services
 
         private readonly ILogger _logger;
 
-        public StorageItem GetById(int  id)
+        public StorageItem GetById(int id)
         {
             return _context.StorageItem.SingleOrDefault(f => f.Id == id);
         }
@@ -25,6 +25,26 @@ namespace FinalProjectFileManager.Services
                 files.Add(GetById(i));
             }
             return files;
+        }
+
+        public void DeleteFile(int id)
+        {
+            var file = GetById(id);
+            if(file.Id != id){
+             //Throw appropriate exception 
+            }
+            file.IsTrash =true;
+            _context.StorageItem.Update(file);
+            _context.SaveChanges();
+
+        }
+
+        public void DeleteFile(int[] id)
+        {
+            foreach(var i in id)
+            {
+                DeleteFile(i);
+            }
         }
 
         public FileService(FileManagerContext context, ILogger<FileService> logger)

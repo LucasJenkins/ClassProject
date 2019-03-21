@@ -11750,11 +11750,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cagbo\\Desktop\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\cagbo\\Desktop\\PROJECTS\\final-project\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\cagbo\\Desktop\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "C:\\Users\\cagbo\\Desktop\\PROJECTS\\final-project\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\cagbo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cagbo\\Desktop\\WebApplication1\\WebApplication1\\obj\\",
+      "outputPath": "C:\\Users\\cagbo\\Desktop\\PROJECTS\\final-project\\WebApplication1\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

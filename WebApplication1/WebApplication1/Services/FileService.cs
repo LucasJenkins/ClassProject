@@ -5,9 +5,14 @@ using System.Linq;
 using FinalProjectFileManager.Api;
 using FinalProjectFileManager.Data;
 using FinalProjectFileManager.Data.Entities;
+
+using FinalProjectFileManager.Exception;
+
 using FinalProjectFileManager.Dtos;
 
+
 using Microsoft.Extensions.Logging;
+using WebApplication1.Exception.Exceptions;
 
 namespace FinalProjectFileManager.Services
 {
@@ -30,6 +35,41 @@ namespace FinalProjectFileManager.Services
                 files.Add(GetById(i));
             }
             return files;
+        }
+
+        public StorageItem RenameItem(int id, string newName)
+        {
+            StorageItem oldItem = GetById(id);
+            var existingName = _context.StorageItem.SingleOrDefault(item => item.Name == newName);
+
+            if (existingName != null)
+            {
+                throw new NameTakenException();
+            }
+
+            oldItem.Name = newName;
+            return oldItem;
+        }
+
+        public StorageItem MoveItem(int id, int folderId)
+        {
+            StorageItem itemToMove = GetById(id);
+            itemToMove.FolderId = folderId;
+            return itemToMove;
+        }
+
+        public StorageItem TrashItem(int id)
+        {
+            StorageItem itemToTrash = GetById(id);
+            itemToTrash.IsTrash = true;
+            return itemToTrash;
+        }
+
+        public StorageItem UntrashItem(int id)
+        {
+            StorageItem itemToUntrash = GetById(id);
+            itemToUntrash.IsTrash = false;
+            return itemToUntrash;
         }
 
         private bool fileExistsInCurrentContext(string name, int folderId)
@@ -93,6 +133,7 @@ namespace FinalProjectFileManager.Services
             {
                 DeleteFile(i);
             }
+
         }
 
         public FileService(FileManagerContext context, ILogger<FileService> logger)

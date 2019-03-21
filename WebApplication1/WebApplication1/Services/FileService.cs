@@ -70,6 +70,26 @@ namespace FinalProjectFileManager.Services
             }
             return result;
         }
+        public void DeleteFile(int id)
+        {
+            var file = GetById(id);
+            if (file.Id != id)
+            {
+                //Throw appropriate exception 
+            }
+            file.IsTrash = true;
+            _context.StorageItem.Update(file);
+            _context.SaveChanges();
+
+        }
+
+        public void DeleteFile(int[] id)
+        {
+            foreach (var i in id)
+            {
+                DeleteFile(i);
+            }
+        }
 
         public FileService(FileManagerContext context, ILogger<FileService> logger)
         {

@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using FinalProjectFileManager.Api;
 using FinalProjectFileManager.Data;
 using FinalProjectFileManager.Data.Entities;
-
-using FinalProjectFileManager.Exception;
 
 using FinalProjectFileManager.Dtos;
 
@@ -123,13 +120,21 @@ namespace FinalProjectFileManager.Services
         public void DeleteFile(int id)
         {
             var file = GetById(id);
-            if (file.Id != id)
+            try
             {
-                //Throw appropriate exception 
+                if (file.IsTrash != true)
+                {
+                    //Throw appropriate exception 
+                }
+                Files.DeleteFile(file.Hash);
+                _context.StorageItem.Remove(file);
+                _context.SaveChanges();
             }
-            file.IsTrash = true;
-            _context.StorageItem.Update(file);
-            _context.SaveChanges();
+            catch
+            {
+                Console.WriteLine("Error deleting file");
+            }
+           
 
         }
 

@@ -28,12 +28,12 @@ namespace FinalProjectFileManager.Api
 
         }
 
-//Changes by Chris
+        //Changes by Chris
         public static bool DeleteFile(string path)
         {
             try
             {
-                var fullPath = @".\StorageFolder\" + path;
+                var fullPath = "./StorageRoot/" + path;
                 File.Delete(fullPath);
                 return true;
             }
@@ -44,7 +44,7 @@ namespace FinalProjectFileManager.Api
             }
         }
 
-//Changes by Chris
+        //Changes by Chris
         public static void DeleteFiles(string []paths)
         {
                 foreach(var i in paths)

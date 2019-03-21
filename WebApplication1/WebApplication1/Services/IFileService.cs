@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using FinalProjectFileManager.Data.Entities;
 using FinalProjectFileManager.Dtos;
 
@@ -15,7 +14,6 @@ namespace FinalProjectFileManager.Services
         StorageItem TrashItem(int id);
         StorageItem UntrashItem(int id);
         //StorageItem DownloadItem()
-
         void DeleteFiles(int[] id);
         void DeleteFile(int id);
 

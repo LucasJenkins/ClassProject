@@ -4,10 +4,7 @@ using System.Linq;
 using FinalProjectFileManager.Api;
 using FinalProjectFileManager.Data;
 using FinalProjectFileManager.Data.Entities;
-
 using FinalProjectFileManager.Dtos;
-
-
 using Microsoft.Extensions.Logging;
 using WebApplication1.Exception.Exceptions;
 
@@ -47,7 +44,7 @@ namespace FinalProjectFileManager.Services
         public StorageItem RenameItem(int id, string newName, int folderId)
         {
 
-            if (fileExistsInCurrentContext(newName, folderId) == true)
+            if (fileExistsInCurrentContext(newName, folderId))
             {
                 throw new NameTakenException();
             }
@@ -116,7 +113,6 @@ namespace FinalProjectFileManager.Services
             return result;
         }
 
-//Changes by Chris
         public void DeleteFile(int id)
         {
             var file = GetById(id);
@@ -136,7 +132,6 @@ namespace FinalProjectFileManager.Services
             }
         }
 
-//Changes by Chris
         public void DeleteFiles(int []id)
         {
             foreach (var i in id)

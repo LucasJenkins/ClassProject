@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using AutoMapper;
-
 using FinalProjectFileManager.Data.Entities;
 using FinalProjectFileManager.Dtos;
 using FinalProjectFileManager.Services;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -45,10 +42,6 @@ namespace FinalProjectFileManager.Controllers
                 }
             }
             return idList;
-            // var result = _fileService.GetByIds(id);
-
-            // var mappedFiles = _mapper.Map<IEnumerable<StorageItem>, IEnumerable<FileResponseDto>>(result);
-            // return mappedFiles.ToList();
         }
 
         [HttpPost]
@@ -59,7 +52,6 @@ namespace FinalProjectFileManager.Controllers
             return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<FileResponseDto>>(_fileService.CreateFiles(files)).ToList();
         }
 
-//Changes by Chris
         [HttpDelete]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]

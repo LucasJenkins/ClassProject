@@ -59,7 +59,7 @@ namespace FinalProjectFileManager.Controllers
             return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<FileResponseDto>>(_fileService.CreateFiles(files)).ToList();
         }
 
-        [HttpDelete("{[]id}")]
+        [HttpDelete]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public ActionResult DeleteFiles([FromBody]int []id){

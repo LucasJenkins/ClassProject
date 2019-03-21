@@ -16,9 +16,5 @@ namespace FinalProjectFileManager.Services
         StorageItem CreateFile(CreateFileDto file);
 
         IEnumerable<StorageItem> CreateFiles(List<CreateFileDto> files);
-<<<<<<< HEAD
-=======
-        void DeleteFile(int id);
->>>>>>> 5572f6e0556bcc168eabecede516162f4e32764f
     }
 }

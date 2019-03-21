@@ -92,8 +92,8 @@ namespace FinalProjectFileManager.Services
         newFile.FolderId = file.FolderId;
         newFile.Created = DateTime.Now;
         newFile.IsTrash = false;
-        newFile.Hash = Guid.NewGuid().ToString();
-        Files.WriteToFile(newFile.Hash, file.Data);
+        newFile.Gu_id = Guid.NewGuid().ToString();
+        Files.WriteToFile(newFile.Gu_id, file.Data);
         _context.StorageItem.Add(newFile);
         _context.SaveChanges();
 
@@ -123,7 +123,7 @@ namespace FinalProjectFileManager.Services
         {
           //Throw appropriate exception 
         }
-        Files.DeleteFile(file.Hash);
+        Files.DeleteFile(file.Gu_id);
         _context.StorageItem.Remove(file);
         _context.SaveChanges();
       }
@@ -144,7 +144,7 @@ namespace FinalProjectFileManager.Services
     public String Download(int id)
     {
       var file = GetById(id);
-      var data = Files.ReadFromFile(file.Hash);
+      var data = Files.ReadFromFile(file.Gu_id);
       return data;
     }
 

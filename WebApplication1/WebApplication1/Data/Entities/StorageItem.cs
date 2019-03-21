@@ -13,7 +13,7 @@ namespace FinalProjectFileManager.Data.Entities
 
     public DateTime Created { get; set; }
 
-    public string Hash { get; set; }
+    public string Gu_id { get; set; }
 
     public Boolean IsTrash { get; set; }
 

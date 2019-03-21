@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using FinalProjectFileManager.Api;
 using FinalProjectFileManager.Data;
 using FinalProjectFileManager.Data.Entities;
-
-using FinalProjectFileManager.Exception;
 
 using FinalProjectFileManager.Dtos;
 
@@ -122,6 +119,7 @@ namespace FinalProjectFileManager.Services
                 {
                     //Throw appropriate exception 
                 }
+                Files.DeleteFile(file.Hash);
                 _context.StorageItem.Remove(file);
                 _context.SaveChanges();
             }

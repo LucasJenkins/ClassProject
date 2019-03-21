@@ -33,7 +33,7 @@ namespace FinalProjectFileManager.Api
         {
             try
             {
-                var fullPath = @".\StorageFolder\" + path;
+                var fullPath = "./StorageRoot/" + path;
                 File.Delete(fullPath);
                 return true;
             }

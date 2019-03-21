@@ -72,9 +72,9 @@ namespace FinalProjectFileManager.Controllers
         [HttpPatch("/rename/{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public ActionResult<FileResponseDto> Rename(int id, string newName)
+        public ActionResult<FileResponseDto> Rename(int id, string newName, int folderId)
         {
-            var fileToRename = _fileService.RenameItem(id, newName);
+            var fileToRename = _fileService.RenameItem(id, newName, folderId);
             var mappedRenamed = _mapper.Map<StorageItem, FileResponseDto>(fileToRename);
             return mappedRenamed;
         }

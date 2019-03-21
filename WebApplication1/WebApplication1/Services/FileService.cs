@@ -37,41 +37,6 @@ namespace FinalProjectFileManager.Services
             return files;
         }
 
-        public StorageItem RenameItem(int id, string newName)
-        {
-            StorageItem oldItem = GetById(id);
-            var existingName = _context.StorageItem.SingleOrDefault(item => item.Name == newName);
-
-            if (existingName != null)
-            {
-                throw new NameTakenException();
-            }
-
-            oldItem.Name = newName;
-            return oldItem;
-        }
-
-        public StorageItem MoveItem(int id, int folderId)
-        {
-            StorageItem itemToMove = GetById(id);
-            itemToMove.FolderId = folderId;
-            return itemToMove;
-        }
-
-        public StorageItem TrashItem(int id)
-        {
-            StorageItem itemToTrash = GetById(id);
-            itemToTrash.IsTrash = true;
-            return itemToTrash;
-        }
-
-        public StorageItem UntrashItem(int id)
-        {
-            StorageItem itemToUntrash = GetById(id);
-            itemToUntrash.IsTrash = false;
-            return itemToUntrash;
-        }
-
         private bool fileExistsInCurrentContext(string name, int folderId)
         {
             var context = _context.StorageItem.Where(item => item.FolderId == folderId).Where(file => file.Name == name).ToList();
@@ -80,6 +45,48 @@ namespace FinalProjectFileManager.Services
                 return false;
             }
             return true;
+        }
+
+        public StorageItem RenameItem(int id, string newName, int folderId)
+        {
+
+            if (fileExistsInCurrentContext(newName, folderId) == true)
+            {
+                throw new NameTakenException();
+            }
+            var oldItem = GetById(id);
+            
+            oldItem.Name = newName;
+            _context.StorageItem.Update(oldItem);
+            _context.SaveChanges();
+            return oldItem;
+        }
+
+        public StorageItem MoveItem(int id, int folderId)
+        {
+            StorageItem itemToMove = GetById(id);
+            itemToMove.FolderId = folderId;
+            _context.StorageItem.Update(itemToMove);
+            _context.SaveChanges();
+            return itemToMove;
+        }
+
+        public StorageItem TrashItem(int id)
+        {
+            StorageItem itemToTrash = GetById(id);
+            itemToTrash.IsTrash = true;
+            _context.StorageItem.Update(itemToTrash);
+            _context.SaveChanges();
+            return itemToTrash;
+        }
+
+        public StorageItem UntrashItem(int id)
+        {
+            StorageItem itemToUntrash = GetById(id);
+            itemToUntrash.IsTrash = false;
+            _context.StorageItem.Update(itemToUntrash);
+            _context.SaveChanges();
+            return itemToUntrash;
         }
 
         public StorageItem CreateFile(CreateFileDto file)

@@ -6,6 +6,6 @@ namespace FinalProjectFileManager.Services
     public interface IFileService
     {
         IEnumerable<StorageItem> GetByIds(int[] id);
-        void DeleteFile(int[] id);
+        void DeleteFiles(int[] id);
     }
 }

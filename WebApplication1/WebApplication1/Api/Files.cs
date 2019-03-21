@@ -29,7 +29,7 @@ namespace FinalProjectFileManager.Api
         }
 
 //Changes by Chris
-        public bool DeleteFile(string path)
+        public static bool DeleteFile(string path)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace FinalProjectFileManager.Api
                 File.Delete(fullPath);
                 return true;
             }
-            catch(Exception e)
+            catch(IOException e)
             {
                 Console.WriteLine(e.Message);
                 return false;
@@ -45,14 +45,14 @@ namespace FinalProjectFileManager.Api
         }
 
 //Changes by Chris
-        public void DeleteFiles(string []paths)
+        public static void DeleteFiles(string []paths)
         {
                 foreach(var i in paths)
                 {
                     try{
                         DeleteFile(i);
                     }
-                    catch(Exception e){
+                    catch(IOException e){
                         Console.WriteLine(e.Message); 
                     }
                 }                 

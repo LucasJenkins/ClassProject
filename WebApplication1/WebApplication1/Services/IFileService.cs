@@ -11,10 +11,10 @@ namespace FinalProjectFileManager.Services
         IEnumerable<StorageItem> GetByIds(int[] id);
 
         void DeleteFiles(int[] id);
+        void DeleteFile(int id);
 
         StorageItem CreateFile(CreateFileDto file);
 
         IEnumerable<StorageItem> CreateFiles(List<CreateFileDto> files);
-        void DeleteFile(int[] id);
     }
 }

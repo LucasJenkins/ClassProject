@@ -87,7 +87,7 @@ namespace FinalProjectFileManager.Services
         }
 
 //Changes by Chris
-        public void DeleteFiles(int[] id)
+        public void DeleteFiles(int []id)
         {
             foreach (var i in id)
             {

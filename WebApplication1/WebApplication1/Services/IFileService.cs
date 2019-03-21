@@ -10,6 +10,12 @@ namespace FinalProjectFileManager.Services
         StorageItem GetById(int id);
         IEnumerable<StorageItem> GetByIds(int[] id);
 
+        StorageItem RenameItem(int id, string newName);
+        StorageItem MoveItem(int id, int folderId);
+        StorageItem TrashItem(int id);
+        StorageItem UntrashItem(int id);
+        //StorageItem DownloadItem()
+
         void DeleteFiles(int[] id);
         void DeleteFile(int id);
 

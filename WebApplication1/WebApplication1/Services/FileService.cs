@@ -70,6 +70,8 @@ namespace FinalProjectFileManager.Services
             }
             return result;
         }
+
+//Changes by Chris
         public void DeleteFile(int id)
         {
             var file = GetById(id);
@@ -82,6 +84,8 @@ namespace FinalProjectFileManager.Services
             _context.SaveChanges();
 
         }
+
+//Changes by Chris
         public void DeleteFiles(int[] id)
         {
             foreach (var i in id)

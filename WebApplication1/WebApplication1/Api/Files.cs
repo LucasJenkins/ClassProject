@@ -31,6 +31,36 @@ namespace WebApplication1.Api
 
         }
 
+//Changes by Chris
+        public bool DeleteFile(string path)
+        {
+            try
+            {
+                var fullPath = @".\StorageFolder\" + path;
+                File.Delete(fullPath);
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+//Changes by Chris
+        public void DeleteFiles(string []paths)
+        {
+                foreach(var i in paths)
+                {
+                    try{
+                        DeleteFile(i);
+                    }
+                    catch(Exception e){
+                        Console.WriteLine(e.Message); 
+                    }
+                }                 
+        }
+
         // Lucas Jenkins - Will return empty string if file does not exisit
         public string ReadFromFile(string path)
         {

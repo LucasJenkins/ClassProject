@@ -5,6 +5,7 @@ _ReSharper.*/
 *.sdf
 bin/
 obj/
+obj/Debug
 Debug/
 Release/
 StorageRoot/

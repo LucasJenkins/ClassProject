@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using System.IO;
 
 namespace FinalProjectServer
 {
@@ -73,6 +74,8 @@ namespace FinalProjectServer
             });
             
             app.UseMvc();
+            Directory.CreateDirectory("./StorageRoot");
+
         }
     }
 }

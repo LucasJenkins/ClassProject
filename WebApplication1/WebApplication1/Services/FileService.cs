@@ -38,8 +38,7 @@ namespace FinalProjectFileManager.Services
             _context.SaveChanges();
 
         }
-
-        public void DeleteFile(int[] id)
+        public void DeleteFiles(int[] id)
         {
             foreach(var i in id)
             {
@@ -53,4 +52,4 @@ namespace FinalProjectFileManager.Services
             _logger = logger;
         }
   }
-}s
+}

@@ -5,6 +5,7 @@ using FinalProjectFileManager.Api;
 using FinalProjectFileManager.Data;
 using FinalProjectFileManager.Data.Entities;
 using FinalProjectFileManager.Dtos;
+using FinalProjectFileManager.Exception.Exceptions;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Exception.Exceptions;
 
@@ -113,19 +114,19 @@ namespace FinalProjectFileManager.Services
       return result;
     }
 
-    //Changes by Chris
     public void DeleteFile(int id)
     {
-      var file = GetById(id);
       try
       {
-        if (file.IsTrash != true)
+        var file = GetById(id);
+
+        if (!file.IsTrash)
         {
-          //Throw appropriate exception 
+         Files.DeleteFile(file.Gu_id);
+         _context.StorageItem.Remove(file);
+         _context.SaveChanges();
         }
-        Files.DeleteFile(file.Gu_id);
-        _context.StorageItem.Remove(file);
-        _context.SaveChanges();
+        
       }
       catch
       {
@@ -133,7 +134,6 @@ namespace FinalProjectFileManager.Services
       }
     }
 
-    //Changes by Chris
     public void DeleteFiles(int[] id)
     {
       foreach (var i in id)

@@ -52,7 +52,6 @@ namespace FinalProjectFileManager.Controllers
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<FileResponseDto>>(_fileService.CreateFiles(files)).ToList();
     }
 
-    //Changes by Chris
     [HttpDelete]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]

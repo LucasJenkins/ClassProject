@@ -2,7 +2,7 @@ using System;
 
 namespace FinalProjectFileManager.Dtos
 {
-    public class CreateFileDto
+    public class CreateStorageItemDto
     {
         public string Name {get;set; }
 

@@ -75,13 +75,14 @@ namespace FinalProjectFileManager.Services
       return itemToUntrash;
     }
 
-    public StorageItem CreateFile(CreateFileDto file)
+    public StorageItem CreateFile(CreateStorageItemDto file)
     {
       if (!fileExistsInCurrentContext(file.Name, file.FolderId))
       {
         var newFile = new StorageItem();
         newFile.Name = file.Name;
         newFile.FolderId = file.FolderId;
+        newFile.IsFolder = false;
         newFile.Created = DateTime.Now;
         newFile.IsTrash = false;
         newFile.Gu_id = Guid.NewGuid().ToString();
@@ -94,7 +95,7 @@ namespace FinalProjectFileManager.Services
       return null;
     }
 
-    public IEnumerable<StorageItem> CreateFiles(List<CreateFileDto> files)
+    public IEnumerable<StorageItem> CreateFiles(List<CreateStorageItemDto> files)
     {
       List<StorageItem> result = new List<StorageItem>();
       foreach (var file in files)

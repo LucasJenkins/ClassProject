@@ -47,7 +47,7 @@ namespace FinalProjectFileManager.Controllers
     [HttpPost]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
-    public ActionResult<IEnumerable<FileResponseDto>> Post([FromBody] List<CreateFileDto> files)
+    public ActionResult<IEnumerable<FileResponseDto>> Post([FromBody] List<CreateStorageItemDto> files)
     {
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<FileResponseDto>>(_fileService.CreateFiles(files)).ToList();
     }

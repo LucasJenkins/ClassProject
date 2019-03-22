@@ -16,7 +16,7 @@ namespace FinalProjectFileManager.Services
     StorageItem MoveItem(int id, int folderId);
     StorageItem TrashItem(int id);
     StorageItem UntrashItem(int id);
-    StorageItem CreateFile(CreateFileDto file);
+    StorageItem CreateFile(CreateStorageItemDto file);
 
     string Download(int id);
     void DeleteFiles(int[] id);
@@ -27,7 +27,11 @@ namespace FinalProjectFileManager.Services
 
     
 
+<<<<<<< HEAD
 >>>>>>> c40af793f1a98fe19f17d4b90a44881691f6f04d:server/Server/Services/IFileService.cs
     IEnumerable<StorageItem> CreateFiles(List<CreateFileDto> files);
+=======
+    IEnumerable<StorageItem> CreateFiles(List<CreateStorageItemDto> files);
+>>>>>>> 28c79ca50383b9be9fd37bda134d51f92ee81d1e
   }
 }

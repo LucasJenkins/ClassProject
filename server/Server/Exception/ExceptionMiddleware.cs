@@ -32,7 +32,7 @@ namespace FinalProjectFileManager.Exception
             var response = context.Response;
             var customException = exception as BaseCustomException;
             var statusCode = (int)HttpStatusCode.InternalServerError;
-            var message = "Unexpected error";
+            var message = $"{exception.Message}";
             var description = "Unexpected error";
 
             if (null != customException)

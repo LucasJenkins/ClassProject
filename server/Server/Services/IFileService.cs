@@ -6,32 +6,28 @@ namespace FinalProjectFileManager.Services
 {
   public interface IFileService
   {
-    IEnumerable<StorageItem> GetByIds(int[] id);
-<<<<<<< HEAD:WebApplication1/WebApplication1/Services/IFileService.cs
-=======
+    IEnumerable<StorageItem> GetByIds(IEnumerable<int> id);
 
     StorageItem GetById(int id);
->>>>>>> c40af793f1a98fe19f17d4b90a44881691f6f04d:server/Server/Services/IFileService.cs
-    StorageItem RenameItem(int id, string newName, int folderItem);
-    StorageItem MoveItem(int id, int folderId);
+
+    StorageItem UpdateItem (UpdateStorageItemDto update);
+    IEnumerable<StorageItem> UpdateItems (IEnumerable<UpdateStorageItemDto> updates);
     StorageItem TrashItem(int id);
     StorageItem UntrashItem(int id);
+
+    IEnumerable<StorageItem> UntrashItems(IEnumerable<int> ids);
     StorageItem CreateFile(CreateStorageItemDto file);
 
-    string Download(int id);
-    void DeleteFiles(int[] id);
+    DownloadResponseDto Download(int id);
+
+    IEnumerable<DownloadResponseDto> Download(IEnumerable<int> ids);
+
+    void DeleteFiles(IEnumerable<int> ids);
     void DeleteFile(int id);
-<<<<<<< HEAD:WebApplication1/WebApplication1/Services/IFileService.cs
-    StorageItem CreateFile(CreateFileDto file);
-=======
 
-    
-
-<<<<<<< HEAD
->>>>>>> c40af793f1a98fe19f17d4b90a44881691f6f04d:server/Server/Services/IFileService.cs
-    IEnumerable<StorageItem> CreateFiles(List<CreateFileDto> files);
-=======
     IEnumerable<StorageItem> CreateFiles(List<CreateStorageItemDto> files);
->>>>>>> 28c79ca50383b9be9fd37bda134d51f92ee81d1e
+    IEnumerable<StorageItem> GetAllFromRoot();
+
+    IEnumerable<StorageItem> GetAllFromTrash();
   }
 }

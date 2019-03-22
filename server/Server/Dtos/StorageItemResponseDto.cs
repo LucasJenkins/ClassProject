@@ -2,7 +2,7 @@ using System;
 
 namespace FinalProjectFileManager.Dtos
 {
-    public class FileResponseDto
+    public class StorageItemResponseDto
     {
         public int Id { get; set; }
 

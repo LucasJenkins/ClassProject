@@ -6,9 +6,9 @@ namespace FinalProjectFileManager.Dtos
     {
         public string Name {get;set; }
 
-        public int FolderId {get;set;}
+        public int FolderId {get;set;} = 0;
 
-        public bool Is_Folder{ get; set;}
+        public bool IsFolder{ get; set;}
 
         public string Data {get;set;}
     }

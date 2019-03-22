@@ -31,15 +31,6 @@ namespace FinalProjectFileManager.Services
       return files;
     }
 
-    private bool fileExistsInCurrentContext(string name, int folderId)
-    {
-      var context = _context.StorageItem.Where(item => item.FolderId == folderId).Where(file => file.Name == name).ToList();
-      if (context.Count == 0)
-      {
-        return false;
-      }
-      return true;
-    }
 
     public StorageItem RenameItem(int id, string newName, int folderId)
     {

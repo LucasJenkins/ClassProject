@@ -1,7 +1,5 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import composeEnhancers from '../middleware'
-
-import { combineReducers } from 'redux'
 
 import routeReducer from './routes'
 

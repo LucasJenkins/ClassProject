@@ -1,6 +1,6 @@
 {
-  "name": "whos-who",
-  "version": "1.0.0",
+  "name": "final-project-jan-2019",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "precommit": "npm run lint",
     "prepush": "npm run lint && npm run build"
   },
-  "author": "Quinton Bolt",
+  "author": "Ryan Lunger, Chris Gborgli, Nate Milien, Lucas Jenkins",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.0.0",

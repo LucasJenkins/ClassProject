@@ -45,6 +45,7 @@ namespace FinalProjectServer
 
             // Add dependencies to IoC container
             services.AddTransient<IFileService, FileService>();
+            services.AddTransient<IValidationService, ValidationService>();
 
             // Seeder used in Program.cs for development
             //services.AddScoped<Seeder>();
@@ -74,7 +75,11 @@ namespace FinalProjectServer
             });
             
             app.UseMvc();
+            if (Directory.Exists("./StorageRoot")) {
+                Directory.Delete("./StorageRoot", true);
+            }
             Directory.CreateDirectory("./StorageRoot");
+
 
         }
     }

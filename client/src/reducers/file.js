@@ -1,4 +1,4 @@
-import * as types from '../action types/index'
+import * as types from '../action-types/index'
 
 const uploadinitialState = {
     name:'',
@@ -6,14 +6,14 @@ const uploadinitialState = {
     errorUploadingFile: false
   }
 
-  const downloadinitialState = {
+  /*const downloadinitialState = {
   }
   const trashinitialState = {
   }
   const deleteinitialState = {
   }
   const updateinitialState = {
-  }
+  }*/
   
   export default function uploadFile (state = uploadinitialState, action) {
     const {type,payload} = action
@@ -44,7 +44,7 @@ const uploadinitialState = {
         }
    }
 
-  export default function downloadFile (state = downloadinitialState, action) {
+ /* export default function downloadFile (state = downloadinitialState, action) {
     const {type,payload} = action
   }
 
@@ -58,4 +58,4 @@ const uploadinitialState = {
 
   export default function updateFile (state = updateinitialState, action) {
     const {type,payload} = action
-  }
+  }*/

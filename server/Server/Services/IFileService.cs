@@ -6,22 +6,28 @@ namespace FinalProjectFileManager.Services
 {
   public interface IFileService
   {
-    IEnumerable<StorageItem> GetByIds(int[] id);
+    IEnumerable<StorageItem> GetByIds(IEnumerable<int> id);
 
     StorageItem GetById(int id);
-    StorageItem RenameItem(int id, string newName, int folderItem);
-    StorageItem MoveItem(int id, int folderId);
+
+    StorageItem UpdateItem (UpdateStorageItemDto update);
+    IEnumerable<StorageItem> UpdateItems (IEnumerable<UpdateStorageItemDto> updates);
     StorageItem TrashItem(int id);
     StorageItem UntrashItem(int id);
+
+    IEnumerable<StorageItem> UntrashItems(IEnumerable<int> ids);
     StorageItem CreateFile(CreateStorageItemDto file);
 
-    string Download(int id);
+    DownloadResponseDto Download(int id);
 
-    void DeleteFiles(int[] id);
+    IEnumerable<DownloadResponseDto> Download(IEnumerable<int> ids);
+
+    void DeleteFiles(IEnumerable<int> ids);
     void DeleteFile(int id);
 
-    
-
     IEnumerable<StorageItem> CreateFiles(List<CreateStorageItemDto> files);
+    IEnumerable<StorageItem> GetAllFromRoot();
+
+    IEnumerable<StorageItem> GetAllFromTrash();
   }
 }

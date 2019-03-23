@@ -11,7 +11,7 @@
     "precommit": "npm run lint",
     "prepush": "npm run lint && npm run build"
   },
-  "author": "Ryan Lunger, Chris Gborgli, Nate Milien, Lucas Jenkins",
+  "author": "Ryan Lunger, Christopher Gborgli, Nate Milien, Lucas Jenkins",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.0.0",

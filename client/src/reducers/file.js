@@ -1,40 +1,61 @@
-export const UPLOAD_BEGIN = 'UPLOAD_BEGIN'
-export const UPLOAD_FAILED = 'UPLOAD_FAILED'
-export const UPLOAD_DONE = 'UPLOAD_DONE'
-export const GET_FILENAME = 'GET_FILENAME'
+import * as types from '../action types/index'
 
-const initialState = {
+const uploadinitialState = {
     name:'',
+    errormessage:'',
     errorUploadingFile: false
   }
+
+  const downloadinitialState = {
+  }
+  const trashinitialState = {
+  }
+  const deleteinitialState = {
+  }
+  const updateinitialState = {
+  }
   
-  export default function upload (state = initialState, action) {
+  export default function uploadFile (state = uploadinitialState, action) {
+    const {type,payload} = action
     switch (type) {
-        case UPLOAD_BEGIN:
+        case types.UPLOAD_BEGIN:
           return {
             ...state,
-            genres: payload,
-            errorLoadingGenres: false
+            errorUploadingFile: false
           }
-          case UPLOAD_FAILED:
+          case types.UPLOAD_FAILED:
           return {
             ...state,
-            genres: payload,
-            errorLoadingGenres: false
+            errorUploadingFile: true
           }
-          case UPLOAD_DONE:
+          case types.UPLOAD_DONE:
           return {
             ...state,
-            genres: payload,
-            errorLoadingGenres: false
+            errorUploadingFile: false
           }
-          case GET_FILENAME:
+          case types.GET_FILENAME:
           return {
             ...state,
-            genres: payload,
-            errorLoadingGenres: false
+            name: payload,
+            errorUploadingFile: false
           }
           default:
           return state
         }
    }
+
+  export default function downloadFile (state = downloadinitialState, action) {
+    const {type,payload} = action
+  }
+
+  export default function trashFile (state = trashinitialState, action) {
+    const {type,payload} = action
+  }
+
+  export default function deleteFile (state = deleteinitialState, action) {
+    const {type,payload} = action
+  }
+
+  export default function updateFile (state = updateinitialState, action) {
+    const {type,payload} = action
+  }

@@ -24,10 +24,13 @@ class Home extends React.Component {
   constructor (props) {
     super(props)
 
+    this.fileInput = React.createRef()
+
     this.state = {
       visible: false,
-      modalInput: '',
-      modalValues: [],
+      modalFileInput: '',
+      uploadedFiles: [],
+      fileNames: [],
       view: 'list'
     }
 
@@ -36,6 +39,7 @@ class Home extends React.Component {
     this.handleCancel = this.handleCancel.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleView = this.handleView.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   showModal () {
@@ -55,16 +59,19 @@ class Home extends React.Component {
 
   handleCancel (e) {
     e.preventDefault()
-    console.log(e)
     this.setState({
       visible: false
     })
   }
 
-  handleSubmit () {
+  handleSubmit (e) {
+    // e.preventDefault()
     this.setState(prevState => ({
-      modalValues: [...prevState.modalValues, this.state.modalInput],
-      modalInput: ''
+      modalFileInput: this.fileInput,
+      uploadedFiles: prevState.uploadedFiles.concat(this.state.modalFileInput),
+      fileNames: prevState.fileNames.concat(
+        this.fileInput.current.files[0].name
+      )
     }))
   }
 
@@ -80,17 +87,27 @@ class Home extends React.Component {
     })
   }
 
+  handleSearch (value) {
+    console.log(
+      this.state.fileNames.filter(
+        el => el.toLowerCase() === value.toLowerCase()
+      )[0]
+    )
+  }
+
   render () {
-    const inputs = this.state.modalValues.map(i => (
-      <List.Item>
-        <File input={i} />
-      </List.Item>
-    ))
+    console.log(this.state.modalValues)
     return (
       <Layout>
         <SiderWrapper addFiles={this.showModal} />
+
         <Layout>
-          <HeaderNav handleView={this.handleView} view={this.state.view} />
+          <HeaderNav
+            handleView={this.handleView}
+            view={this.state.view}
+            fileNames={this.state.fileNames}
+            handleSearch={this.handleSearch}
+          />
           <Layout style={{ padding: '0 24px 24px' }}>
             {/* <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -109,14 +126,24 @@ class Home extends React.Component {
               {this.state.view === 'list' ? (
                 <List
                   // bordered
-                  dataSource={this.state.modalValues}
-                  renderItem={item => <List.Item>{item}</List.Item>}
+                  dataSource={this.state.fileNames}
+                  renderItem={item => (
+                    <List.Item>
+                      <Icon type='file' />
+                      {item}
+                    </List.Item>
+                  )}
                 />
               ) : (
                 <List
                   grid={{ gutter: 16, column: 4 }}
-                  dataSource={this.state.modalValues}
-                  renderItem={item => <List.Item>{item}</List.Item>}
+                  dataSource={this.state.fileNames}
+                  renderItem={item => (
+                    <List.Item>
+                      <Icon type='file' />
+                      {item}
+                    </List.Item>
+                  )}
                 />
               )}
 
@@ -126,10 +153,13 @@ class Home extends React.Component {
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
               >
-                <input
-                  onChange={this.handleChange}
-                  value={this.state.modalValue}
-                />
+                <form onSubmit={this.handleSubmit}>
+                  <label>
+                    Upload file:
+                    <input type='file' ref={this.fileInput} />
+                  </label>
+                  <br />
+                </form>
               </Modal>
             </Content>
           </Layout>

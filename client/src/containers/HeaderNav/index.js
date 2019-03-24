@@ -13,7 +13,7 @@ const HeaderNav = props => (
     <Search
       className='search'
       placeholder='input search text'
-      onSearch={value => console.log(value)}
+      onSearch={props.handleSearch}
       enterButton
     />
     <ButtonElement handleView={props.handleView} view={props.view} />

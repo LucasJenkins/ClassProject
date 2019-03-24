@@ -6,20 +6,19 @@ import {
   Menu,
   Breadcrumb,
   Icon,
-  Input,
   Button,
   Upload,
   message,
-  Modal
+  Modal,
+  List
 } from 'antd'
 
 import File from '../components/File'
-import SiderWrapper from '../components/SiderWrapper'
+import SiderWrapper from '../containers/SiderNav/index'
+import HeaderNav from '../containers/HeaderNav/index'
 
 const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout
-
-const Search = Input.Search
 
 class Home extends React.Component {
   constructor (props) {
@@ -28,13 +27,15 @@ class Home extends React.Component {
     this.state = {
       visible: false,
       modalInput: '',
-      modalValues: []
+      modalValues: [],
+      view: 'list'
     }
 
     this.showModal = this.showModal.bind(this)
     this.handleOk = this.handleOk.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleView = this.handleView.bind(this)
   }
 
   showModal () {
@@ -73,30 +74,29 @@ class Home extends React.Component {
     })
   }
 
+  handleView (e) {
+    this.setState({
+      view: e.target.value
+    })
+  }
+
   render () {
     const inputs = this.state.modalValues.map(i => (
-      <li>
+      <List.Item>
         <File input={i} />
-      </li>
+      </List.Item>
     ))
     return (
       <Layout>
         <SiderWrapper addFiles={this.showModal} />
         <Layout>
-          <Header className='header'>
-            <Search
-              className='search'
-              placeholder='input search text'
-              onSearch={value => console.log(value)}
-              enterButton
-            />
-          </Header>
+          <HeaderNav handleView={this.handleView} view={this.state.view} />
           <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
+            {/* <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb> */}
             <Content
               style={{
                 background: '#fff',
@@ -106,6 +106,20 @@ class Home extends React.Component {
                 height: '100vh'
               }}
             >
+              {this.state.view === 'list' ? (
+                <List
+                  // bordered
+                  dataSource={this.state.modalValues}
+                  renderItem={item => <List.Item>{item}</List.Item>}
+                />
+              ) : (
+                <List
+                  grid={{ gutter: 16, column: 4 }}
+                  dataSource={this.state.modalValues}
+                  renderItem={item => <List.Item>{item}</List.Item>}
+                />
+              )}
+
               <Modal
                 title='Upload Modal'
                 visible={this.state.visible}
@@ -117,7 +131,6 @@ class Home extends React.Component {
                   value={this.state.modalValue}
                 />
               </Modal>
-              <ul>{inputs}</ul>
             </Content>
           </Layout>
         </Layout>

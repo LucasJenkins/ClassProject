@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using FinalProjectFileManager.Api;
 using FinalProjectFileManager.Data;
 using FinalProjectFileManager.Data.Entities;
 using FinalProjectFileManager.Dtos;
-using Microsoft.Extensions.Logging;
 using FinalProjectFileManager.Exception.Exceptions;
+
+using Microsoft.Extensions.Logging;
 
 namespace FinalProjectFileManager.Services
 {
@@ -18,14 +20,15 @@ namespace FinalProjectFileManager.Services
 
     public StorageItem GetById(int id)
     {
-      try {
-      return _context.StorageItems.Single(f => f.Id == id);
+      try
+      {
+        return _context.StorageItems.Single(f => f.Id == id);
       }
-      catch {
+      catch
+      {
         throw new ItemNotFoundException(id);
       }
     }
-
 
     public IEnumerable<StorageItem> GetByIds(IEnumerable<int> id)
     {
@@ -37,8 +40,9 @@ namespace FinalProjectFileManager.Services
       return files;
     }
 
-    public IEnumerable<int> GetIdsByFolderId(int id) {
-      return _context.StorageItems.Where(item => item.FolderId == id).Select(item=>item.Id).ToList();
+    public IEnumerable<int> GetIdsByFolderId(int id)
+    {
+      return _context.StorageItems.Where(item => item.FolderId == id).Select(item => item.Id).ToList();
     }
 
     public StorageItem TrashItem(int id)
@@ -59,9 +63,11 @@ namespace FinalProjectFileManager.Services
       return itemToUntrash;
     }
 
-    public IEnumerable<StorageItem> UntrashItems(IEnumerable<int> ids) {
+    public IEnumerable<StorageItem> UntrashItems(IEnumerable<int> ids)
+    {
       var result = new List<StorageItem>();
-      foreach (var id in ids) {
+      foreach (var id in ids)
+      {
         result.Add(UntrashItem(id));
       }
       return result;
@@ -69,23 +75,24 @@ namespace FinalProjectFileManager.Services
 
     public StorageItem CreateFile(CreateStorageItemDto item)
     {
-        var newItem = new StorageItem();
-        newItem.Name = item.Name;
-        newItem.FolderId = item.FolderId;
-        newItem.IsFolder = item.IsFolder;
-        newItem.Created = DateTime.Now;
-        newItem.IsTrash = false;
-        newItem.Guid = Guid.NewGuid().ToString();
-        if (!newItem.IsFolder) {
-          Files.WriteToFile(newItem.Guid, item.Data);
-        }
-        _context.StorageItems.Add(newItem);
-        _context.SaveChanges();
+      var newItem = new StorageItem();
+      newItem.Name = item.Name;
+      newItem.FolderId = item.FolderId;
+      newItem.IsFolder = item.IsFolder;
+      newItem.Created = DateTime.Now;
+      newItem.IsTrash = false;
+      newItem.Guid = Guid.NewGuid().ToString();
+      if (!newItem.IsFolder)
+      {
+        Files.WriteToFile(newItem.Guid, item.Data);
+      }
+      _context.StorageItems.Add(newItem);
+      _context.SaveChanges();
 
-        return newItem;
+      return newItem;
     }
 
-    public IEnumerable<StorageItem> CreateFiles(List<CreateStorageItemDto> items)
+    public IEnumerable<StorageItem> CreateFiles(IEnumerable<CreateStorageItemDto> items)
     {
       List<StorageItem> result = new List<StorageItem>();
       foreach (var item in items)
@@ -97,12 +104,13 @@ namespace FinalProjectFileManager.Services
 
     public void DeleteFile(int id)
     {
-        var item = GetById(id);
-        if (!item.IsFolder) {
-         Files.DeleteFile(item.Guid);
-        }
-         _context.StorageItems.Remove(item);
-         _context.SaveChanges();
+      var item = GetById(id);
+      if (!item.IsFolder)
+      {
+        Files.DeleteFile(item.Guid);
+      }
+      _context.StorageItems.Remove(item);
+      _context.SaveChanges();
     }
 
     public void DeleteFiles(IEnumerable<int> id)
@@ -115,7 +123,7 @@ namespace FinalProjectFileManager.Services
 
     public DownloadResponseDto Download(int id)
     {
-      var result= new DownloadResponseDto();
+      var result = new DownloadResponseDto();
       var file = GetById(id);
       var data = Files.ReadFromFile(file.Guid);
       result.Data = data;
@@ -124,41 +132,49 @@ namespace FinalProjectFileManager.Services
       return result;
     }
 
-
-    public IEnumerable<DownloadResponseDto> Download(IEnumerable<int> ids) {
+    public IEnumerable<DownloadResponseDto> Download(IEnumerable<int> ids)
+    {
       var result = new List<DownloadResponseDto>();
-      foreach (var id in ids) {
+      foreach (var id in ids)
+      {
         var item = GetById(id);
-        if (item.IsFolder) {
+        if (item.IsFolder)
+        {
           result.AddRange(Download(GetIdsByFolderId(id)));
         }
-        else {
+        else
+        {
           result.Add(Download(id));
         }
       }
       return result;
     }
 
-    public IEnumerable<StorageItem> GetAllFromRoot() {
+    public IEnumerable<StorageItem> GetAllFromRoot()
+    {
       return _context.StorageItems.Where(file => file.FolderId == 0).ToList();
     }
 
-    public IEnumerable<StorageItem> GetAllFromTrash() {
+    public IEnumerable<StorageItem> GetAllFromTrash()
+    {
       return _context.StorageItems.Where(item => item.IsTrash).ToList();
     }
 
     public StorageItem UpdateItem(UpdateStorageItemDto update)
     {
       var storageItem = GetById(update.Id);
-      if (update.Data != null) {
+      if (update.Data != null)
+      {
         Files.WriteToFile(storageItem.Guid, update.Data);
       }
 
-      if (update.FolderId != -1) {
+      if (update.FolderId != -1)
+      {
         storageItem.FolderId = update.FolderId;
       }
 
-      if (update.Name.Length > 0) {
+      if (update.Name.Length > 0)
+      {
         storageItem.Name = update.Name;
       }
 
@@ -170,7 +186,8 @@ namespace FinalProjectFileManager.Services
     public IEnumerable<StorageItem> UpdateItems(IEnumerable<UpdateStorageItemDto> updates)
     {
       var result = new List<StorageItem>();
-      foreach (var update in updates) {
+      foreach (var update in updates)
+      {
         result.Add(UpdateItem(update));
       }
       return result;

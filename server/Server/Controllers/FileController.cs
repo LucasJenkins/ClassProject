@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AutoMapper;
+
 using FinalProjectFileManager.Data.Entities;
 using FinalProjectFileManager.Dtos;
 using FinalProjectFileManager.Services;
+
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -21,7 +25,6 @@ namespace FinalProjectFileManager.Controllers
 
     private readonly ILogger _logger;
 
-
     public FileController(IFileService fileService, IValidationService validationService, IMapper mapper, ILogger<FileController> logger)
     {
       _fileService = fileService;
@@ -31,7 +34,7 @@ namespace FinalProjectFileManager.Controllers
     }
 
     // GET api/files
-[HttpGet]
+    [HttpGet]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public ActionResult<IEnumerable<StorageItemResponseDto>> Get(string ids)
@@ -42,14 +45,16 @@ namespace FinalProjectFileManager.Controllers
         foreach (var id in ids.Split(','))
         {
           int parsedId = 0;
-          if (Int32.TryParse(id, out parsedId)) {
+          if (Int32.TryParse(id, out parsedId))
+          {
             idList.Add(parsedId);
           }
         }
         idList = idList.Select(id => id).Distinct().ToList();
         return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.GetByIds(idList.ToArray())).ToList();
       }
-      else {
+      else
+      {
         return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.GetAllFromRoot()).ToList();
       }
     }
@@ -57,37 +62,43 @@ namespace FinalProjectFileManager.Controllers
     [HttpGet("{id}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public ActionResult<StorageItemResponseDto> GetOne (int id) {
+    public ActionResult<StorageItemResponseDto> GetOne(int id)
+    {
       return _mapper.Map<StorageItem, StorageItemResponseDto>(_fileService.GetById(id));
     }
 
     [HttpPatch("{id}/untrash")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public ActionResult<StorageItemResponseDto> UntrashOne (int id) {
+    public ActionResult<StorageItemResponseDto> UntrashOne(int id)
+    {
       return _mapper.Map<StorageItem, StorageItemResponseDto>(_fileService.UntrashItem(id));
     }
 
     [HttpPatch("untrash")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public ActionResult<IEnumerable<StorageItemResponseDto>> Untrash ([FromBody] IEnumerable<int> ids) {
+    public ActionResult<IEnumerable<StorageItemResponseDto>> Untrash([FromBody] IEnumerable<int> ids)
+    {
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.UntrashItems(ids)).ToList();
     }
 
     [HttpPost]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
-    public ActionResult<IEnumerable<StorageItemResponseDto>> Post([FromBody] List<CreateStorageItemDto> items)
+    public ActionResult<IEnumerable<StorageItemResponseDto>> Post([FromBody] IEnumerable<CreateStorageItemDto> items)
     {
+
       _validationService.Validate(items);
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.CreateFiles(items)).ToList();
+
     }
 
     [HttpPatch]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public ActionResult<IEnumerable<StorageItemResponseDto>> Update([FromBody] IEnumerable<UpdateStorageItemDto> items) {
+    public ActionResult<IEnumerable<StorageItemResponseDto>> Update([FromBody] IEnumerable<UpdateStorageItemDto> items)
+    {
       _validationService.Validate(items);
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.UpdateItems(items)).ToList();
     }
@@ -113,10 +124,10 @@ namespace FinalProjectFileManager.Controllers
       return StatusCode(200);
     }
 
-
     [HttpGet("/api/trash")]
     [ProducesResponseType(200)]
-    public ActionResult<IEnumerable<StorageItemResponseDto>> GetTrash() {
+    public ActionResult<IEnumerable<StorageItemResponseDto>> GetTrash()
+    {
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.GetAllFromTrash()).ToList();
     }
 
@@ -132,14 +143,16 @@ namespace FinalProjectFileManager.Controllers
     [HttpGet("download")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public ActionResult<IEnumerable<DownloadResponseDto>> Download(string ids) {
+    public ActionResult<IEnumerable<DownloadResponseDto>> Download(string ids)
+    {
       var idList = new List<int>();
       if (ids != null)
       {
         foreach (var id in ids.Split(','))
         {
           int parsedId = 0;
-          if (Int32.TryParse(id, out parsedId)) {
+          if (Int32.TryParse(id, out parsedId))
+          {
             idList.Add(parsedId);
           }
         }
@@ -148,7 +161,7 @@ namespace FinalProjectFileManager.Controllers
         return _fileService.Download(idList).ToList();
       }
 
-    return StatusCode(400);
+      return StatusCode(400);
     }
   }
 }

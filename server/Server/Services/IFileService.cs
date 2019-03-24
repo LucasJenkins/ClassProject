@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using FinalProjectFileManager.Data.Entities;
 using FinalProjectFileManager.Dtos;
 
@@ -10,8 +11,8 @@ namespace FinalProjectFileManager.Services
 
     StorageItem GetById(int id);
 
-    StorageItem UpdateItem (UpdateStorageItemDto update);
-    IEnumerable<StorageItem> UpdateItems (IEnumerable<UpdateStorageItemDto> updates);
+    StorageItem UpdateItem(UpdateStorageItemDto update);
+    IEnumerable<StorageItem> UpdateItems(IEnumerable<UpdateStorageItemDto> updates);
     StorageItem TrashItem(int id);
     StorageItem UntrashItem(int id);
 
@@ -25,7 +26,7 @@ namespace FinalProjectFileManager.Services
     void DeleteFiles(IEnumerable<int> ids);
     void DeleteFile(int id);
 
-    IEnumerable<StorageItem> CreateFiles(List<CreateStorageItemDto> files);
+    IEnumerable<StorageItem> CreateFiles(IEnumerable<CreateStorageItemDto> files);
     IEnumerable<StorageItem> GetAllFromRoot();
 
     IEnumerable<StorageItem> GetAllFromTrash();

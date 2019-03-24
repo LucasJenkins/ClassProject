@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import 'antd/dist/antd.css'
 import './index.css'
 import { Layout, Menu, Breadcrumb, Icon, Input } from 'antd'
@@ -7,7 +6,7 @@ import { Layout, Menu, Breadcrumb, Icon, Input } from 'antd'
 import { Link } from 'react-router-dom'
 
 const { SubMenu } = Menu
-const { Header, Content, Footer, Sider } = Layout
+const { Content, Footer, Sider } = Layout
 
 const Search = Input.Search
 

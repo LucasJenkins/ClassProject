@@ -2,12 +2,12 @@ import { createStore, combineReducers } from 'redux'
 import composeEnhancers from '../middleware'
 
 import routeReducer from './routes'
-import fileReducer from './file'
+import uploadReducer from './upload'
 
 const createReducer = () => {
   return combineReducers({
     route: routeReducer,
-    file: fileReducer
+    upload: uploadReducer
   })
 }
 

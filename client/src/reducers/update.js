@@ -12,7 +12,7 @@ const updateInitialState = {
   error: false
 }
 
-export default function updateReducer (state = updateInitialState, action) {
+export default function trashReducer (state = updateInitialState, action) {
   const { type, payload } = action
   switch (type) {
     case UPDATE_BEGIN:

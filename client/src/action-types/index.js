@@ -5,13 +5,15 @@ export const UPLOAD_BEGIN = 'UPLOAD_BEGIN'
 export const UPLOAD_FAILED = 'UPLOAD_FAILED'
 export const UPLOAD_DONE = 'UPLOAD_DONE'
 
+export const SET_UPDATE_FILES = 'SET_UPDATE_FILES'
+export const UPDATE_BEGIN = 'UPDATE_BEGIN'
+export const UPDATE_DONE = 'UPDATE_DONE'
+export const UPDATE_FAILED = 'UPDATE_FAILED'
+
 export const SET_DOWNLOAD_FILES = 'SET_DOWNLOAD_FILES'
 export const DOWNLOAD_FAILED = 'DOWNLOAD_FAILED'
 export const DOWNLOAD_BEGIN = 'DOWNLOAD_BEGIN'
 export const DOWNLOAD_DONE = 'DOWNLOAD_DONE'
-export const TRASH_FILE = 'TRASH_FILE'
-export const DELETE_FILE = 'DELETE_FILE'
-export const RENAME_FILE = 'RENAME_FILE'
 
 // Home Reducer
 export const SET_SELECTED_FILE = 'SET_SELECTED_FILE'

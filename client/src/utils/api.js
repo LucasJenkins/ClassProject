@@ -6,10 +6,9 @@ export const createApi = url => (endpoint, method) => (
   resolve,
   reject
 ) => {
-  const body = JSON.stringify(request)
   fetch(url + endpoint, {
     method: method,
-    body,
+    ...bodyIfAllowed(method, request),
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
@@ -24,3 +23,6 @@ export const createApi = url => (endpoint, method) => (
     })
     .catch(e => console.log(e.message))
 }
+
+const bodyIfAllowed = (method, request) =>
+  method !== 'GET' ? { body: JSON.stringify(request) } : {}

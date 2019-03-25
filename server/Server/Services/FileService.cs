@@ -178,6 +178,16 @@ namespace FinalProjectFileManager.Services
         storageItem.Name = update.Name;
       }
 
+      if(update.IsTrash)
+      {
+        storageItem.IsTrash = update.IsTrash;
+      }
+      
+      if(!update.IsTrash)
+      {
+        storageItem.IsTrash = update.IsTrash;
+      }
+
       _context.StorageItems.Update(storageItem);
       _context.SaveChanges();
       return storageItem;

@@ -1,6 +1,7 @@
 import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
+
 import { Layout, Icon, List } from 'antd'
 
 import SiderWrapper from '../containers/SiderNav/index'
@@ -12,12 +13,9 @@ const { Content } = Layout
 class Home extends React.Component {
   constructor (props) {
     super(props)
-
-    this.fileInput = React.createRef()
-
     this.state = {
       visible: false,
-      modalFileInput: '',
+      modalFileInput: React.createRef(),
       uploadedFiles: [],
       fileNames: [],
       fileList: [],
@@ -57,7 +55,7 @@ class Home extends React.Component {
   handleSubmit (e) {
     // e.preventDefault()
     this.setState(prevState => ({
-      modalFileInput: this.fileInput,
+      // modalFileInput: this.fileInput,
       uploadedFiles: prevState.uploadedFiles.concat(this.state.modalFileInput),
       fileNames: prevState.fileNames.concat(
         this.fileInput.current.files[0].name
@@ -142,7 +140,7 @@ class Home extends React.Component {
                 visible={this.state.visible}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
-                fileInput={this.fileInput}
+                fileInput={this.state.modalFileInput}
                 fileNames={this.state.fileNames}
                 multiple
               />

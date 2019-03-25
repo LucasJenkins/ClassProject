@@ -1,18 +1,10 @@
 import React from 'react'
 import 'antd/dist/antd.css'
-import { Modal, Upload, Button, Icon, Layout } from 'antd'
+import { Modal } from 'antd'
 import './index.css'
-
-const { Content } = Layout
+import PropTypes from 'prop-types'
 
 class UploadModal extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-  uploadFiles () {
-    const x = this.props.fileNames.map((el, index) => <p key={index}>{el}</p>)
-  }
-
   render () {
     return (
       <Modal
@@ -36,6 +28,15 @@ class UploadModal extends React.Component {
       </Modal>
     )
   }
+}
+
+UploadModal.propTypes = {
+  visible: PropTypes.bool,
+  onCancel: PropTypes.func,
+  fileNames: PropTypes.array,
+  handleSubmit: PropTypes.func,
+  fileInput: PropTypes.array,
+  onOk: PropTypes.func
 }
 
 export default UploadModal

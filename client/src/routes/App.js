@@ -3,11 +3,13 @@ import { Route } from 'react-router-dom'
 
 import Home from '../views/Home'
 import Testing from '../containers/UploadTest'
+import Trash from '../views/Trash'
 
 const App = props => (
   <div>
     <Route exact path='/' component={Home} />
     <Route path='/testing' component={Testing} />
+    <Route path='/trash' component={Trash} />
   </div>
 )
 

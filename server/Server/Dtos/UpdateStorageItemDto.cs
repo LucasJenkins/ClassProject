@@ -6,5 +6,6 @@ namespace FinalProjectFileManager.Dtos {
     public string Name { get; set; }
     public int FolderId { get; set; } = -1;
     public string Data { get; set; }
+    public bool IsTrash {get;set;}
   }
 }

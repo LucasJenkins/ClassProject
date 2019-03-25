@@ -1,10 +1,11 @@
 import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
-import { Layout, Icon, Modal, List } from 'antd'
+import { Layout, Icon, List } from 'antd'
 
 import SiderWrapper from '../containers/SiderNav/index'
 import HeaderNav from '../containers/HeaderNav/index'
+import UploadModal from '../containers/UploadModal/index'
 
 const { Content } = Layout
 
@@ -19,6 +20,7 @@ class Home extends React.Component {
       modalFileInput: '',
       uploadedFiles: [],
       fileNames: [],
+      fileList: [],
       view: 'list'
     }
 
@@ -84,7 +86,9 @@ class Home extends React.Component {
   }
 
   render () {
-    console.log(this.state.modalValues)
+    console.log(this.state.uploadedFiles)
+    console.log(this.state.fileNames)
+
     return (
       <Layout>
         <SiderWrapper addFiles={this.showModal} />
@@ -134,21 +138,14 @@ class Home extends React.Component {
                   )}
                 />
               )}
-
-              <Modal
-                title='Upload Modal'
+              <UploadModal
                 visible={this.state.visible}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
-              >
-                <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Upload file:
-                    <input type='file' ref={this.fileInput} />
-                  </label>
-                  <br />
-                </form>
-              </Modal>
+                fileInput={this.fileInput}
+                fileNames={this.state.fileNames}
+                multiple
+              />
             </Content>
           </Layout>
         </Layout>

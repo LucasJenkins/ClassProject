@@ -84,6 +84,7 @@ namespace FinalProjectFileManager.Controllers
     }
 
     [HttpPost]
+    [RequestSizeLimit(100000000)]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     public ActionResult<IEnumerable<StorageItemResponseDto>> Post([FromBody] IEnumerable<CreateStorageItemDto> items)

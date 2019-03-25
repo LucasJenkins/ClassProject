@@ -1,19 +1,7 @@
 import React from 'react'
-import {
-  Layout,
-  Menu,
-  Breadcrumb,
-  Icon,
-  Button,
-  Upload,
-  message,
-  Modal,
-  List
-} from 'antd'
-import File from '../components/File'
+import { Layout } from 'antd'
 import SiderWrapper from '../containers/SiderNav/index'
 import HeaderNav from '../containers/HeaderNav/index'
-const { Content } = Layout
 
 const Trash = props => (
   <Layout>

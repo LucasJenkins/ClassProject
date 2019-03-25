@@ -1,24 +1,12 @@
 import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
-import {
-  Layout,
-  Menu,
-  Breadcrumb,
-  Icon,
-  Button,
-  Upload,
-  message,
-  Modal,
-  List
-} from 'antd'
+import { Layout, Icon, Modal, List } from 'antd'
 
-import File from '../components/File'
 import SiderWrapper from '../containers/SiderNav/index'
 import HeaderNav from '../containers/HeaderNav/index'
 
-const { SubMenu } = Menu
-const { Content, Footer, Sider } = Layout
+const { Content } = Layout
 
 class Home extends React.Component {
   constructor (props) {

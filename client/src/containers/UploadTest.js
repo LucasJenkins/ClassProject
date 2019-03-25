@@ -5,6 +5,10 @@ import { upload } from '../async-actions/upload'
 import { setUploadFiles } from '../action-creators/upload'
 
 class UploadTest extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
   handleChange (e) {
     this.props.setUploadFiles([...e.target.files])
   }

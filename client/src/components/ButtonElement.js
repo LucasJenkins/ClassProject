@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
 // import './index.css'
 
-import { Button, Radio } from 'antd'
+import { Radio } from 'antd'
 
 class ButtonElement extends React.Component {
   //   constructor (props) {
@@ -29,6 +30,11 @@ class ButtonElement extends React.Component {
       </Radio.Group>
     )
   }
+}
+
+ButtonElement.propTypes = {
+  view: PropTypes.string,
+  handleView: PropTypes.func
 }
 
 export default ButtonElement

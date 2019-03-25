@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
 // import './index.css'
-import { Router, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { Layout, Button, Icon, Breadcrumb, Alert } from 'antd'
+import { Layout, Button, Icon } from 'antd'
 
-const { Header, Content, Footer, Sider } = Layout
+const { Sider } = Layout
 
 const SiderWrapper = props => (
   <Sider width={200} style={{ background: '#fff' }}>
@@ -32,5 +33,9 @@ const SiderWrapper = props => (
     </div>
   </Sider>
 )
+
+SiderWrapper.propTypes = {
+  addFiles: PropTypes.func
+}
 
 export default SiderWrapper

@@ -1,37 +1,43 @@
-import React from "react";
-import { Modal, Button } from "antd";
+import React from 'react'
+import { Modal, Button } from 'antd'
 
 export class DeleteButton extends React.Component {
-  state = { visible: false };
+  constructor () {
+    super()
+    this.showModal = this.showModal(this)
+    this.handleOk = this.handleOk(this)
+    this.handleCancel = this.handleCancel(this)
+    this.state = { visible: false }
+  }
 
-  showModal = () => {
+  showModal () {
     this.setState({
       visible: true
-    });
-  };
+    })
+  }
 
-  handleOk = e => {
-    console.log(e);
+  handleOk (e) {
+    console.log(e)
     this.setState({
       visible: false
-    });
-  };
+    })
+  }
 
-  handleCancel = e => {
-    console.log(e);
+  handleCancel (e) {
+    console.log(e)
     this.setState({
       visible: false
-    });
-  };
+    })
+  }
 
-  render() {
+  render () {
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
+        <Button type='primary' onClick={this.showModal}>
           Delete
         </Button>
         <Modal
-          title="Delete!"
+          title='Delete!'
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
@@ -40,8 +46,8 @@ export class DeleteButton extends React.Component {
           <p>index.js</p>
         </Modal>
       </div>
-    );
+    )
   }
 }
 
-export default DeleteButton;
+export default DeleteButton

@@ -1,58 +1,59 @@
-import React from 'react'
-import 'antd/dist/antd.css'
-import './index.css'
-import { Layout, Icon, Modal, List } from 'antd'
+import React from "react";
+import "antd/dist/antd.css";
+import "./index.css";
+import { Layout, Icon, Modal, List } from "antd";
 
-import SiderWrapper from '../containers/SiderNav/index'
-import HeaderNav from '../containers/HeaderNav/index'
+import SiderWrapper from "../containers/SiderNav/index";
+import HeaderNav from "../containers/HeaderNav/index";
+import { FileInfo } from "../components/FileInfo";
 
-const { Content } = Layout
+const { Content } = Layout;
 
 class Home extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
-    this.fileInput = React.createRef()
+    this.fileInput = React.createRef();
 
     this.state = {
       visible: false,
-      modalFileInput: '',
+      modalFileInput: "",
       uploadedFiles: [],
       fileNames: [],
-      view: 'list'
-    }
+      view: "list"
+    };
 
-    this.showModal = this.showModal.bind(this)
-    this.handleOk = this.handleOk.bind(this)
-    this.handleCancel = this.handleCancel.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleView = this.handleView.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
+    this.showModal = this.showModal.bind(this);
+    this.handleOk = this.handleOk.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleView = this.handleView.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  showModal () {
+  showModal() {
     this.setState({
       visible: true
-    })
+    });
   }
 
-  handleOk (e) {
-    e.preventDefault()
+  handleOk(e) {
+    e.preventDefault();
     this.setState(prevState => ({
       visible: false
-    }))
+    }));
 
-    this.handleSubmit()
+    this.handleSubmit();
   }
 
-  handleCancel (e) {
-    e.preventDefault()
+  handleCancel(e) {
+    e.preventDefault();
     this.setState({
       visible: false
-    })
+    });
   }
 
-  handleSubmit (e) {
+  handleSubmit(e) {
     // e.preventDefault()
     this.setState(prevState => ({
       modalFileInput: this.fileInput,
@@ -60,31 +61,31 @@ class Home extends React.Component {
       fileNames: prevState.fileNames.concat(
         this.fileInput.current.files[0].name
       )
-    }))
+    }));
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({
       modalInput: e.target.value
-    })
+    });
   }
 
-  handleView (e) {
+  handleView(e) {
     this.setState({
       view: e.target.value
-    })
+    });
   }
 
-  handleSearch (value) {
+  handleSearch(value) {
     console.log(
       this.state.fileNames.filter(
         el => el.toLowerCase() === value.toLowerCase()
       )[0]
-    )
+    );
   }
 
-  render () {
-    console.log(this.state.modalValues)
+  render() {
+    console.log(this.state.modalValues);
     return (
       <Layout>
         <SiderWrapper addFiles={this.showModal} />
@@ -96,7 +97,8 @@ class Home extends React.Component {
             fileNames={this.state.fileNames}
             handleSearch={this.handleSearch}
           />
-          <Layout style={{ padding: '0 24px 24px' }}>
+
+          <Layout style={{ padding: "0 24px 24px" }}>
             {/* <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>
@@ -104,20 +106,23 @@ class Home extends React.Component {
             </Breadcrumb> */}
             <Content
               style={{
-                background: '#fff',
+                background: "#fff",
                 padding: 24,
                 margin: 0,
                 minHeight: 280,
-                height: '100vh'
+                height: "100vh"
               }}
             >
-              {this.state.view === 'list' ? (
+              {this.state.view === "list" ? (
                 <List
                   // bordered
                   dataSource={this.state.fileNames}
                   renderItem={item => (
                     <List.Item>
-                      <Icon type='file' />
+                      <FileInfo key={item} value={item}>
+                        Info
+                      </FileInfo>
+                      <Icon type="file" />
                       {item}
                     </List.Item>
                   )}
@@ -128,7 +133,10 @@ class Home extends React.Component {
                   dataSource={this.state.fileNames}
                   renderItem={item => (
                     <List.Item>
-                      <Icon type='file' />
+                      <FileInfo key={item} value={item}>
+                        Info
+                      </FileInfo>
+                      <Icon type="file" />
                       {item}
                     </List.Item>
                   )}
@@ -136,7 +144,7 @@ class Home extends React.Component {
               )}
 
               <Modal
-                title='Upload Modal'
+                title="Upload Modal"
                 visible={this.state.visible}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
@@ -144,7 +152,7 @@ class Home extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                   <label>
                     Upload file:
-                    <input type='file' ref={this.fileInput} />
+                    <input type="file" ref={this.fileInput} />
                   </label>
                   <br />
                 </form>
@@ -153,8 +161,8 @@ class Home extends React.Component {
           </Layout>
         </Layout>
       </Layout>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;

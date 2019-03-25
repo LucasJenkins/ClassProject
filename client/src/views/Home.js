@@ -6,6 +6,7 @@ import { Layout, Icon, List } from 'antd'
 
 import SiderWrapper from '../containers/SiderNav/index'
 import HeaderNav from '../containers/HeaderNav/index'
+import { FileInfo } from '../components/FileInfo'
 import UploadModal from '../containers/UploadModal/index'
 
 const { Content } = Layout
@@ -98,6 +99,7 @@ class Home extends React.Component {
             fileNames={this.state.fileNames}
             handleSearch={this.handleSearch}
           />
+
           <Layout style={{ padding: '0 24px 24px' }}>
             {/* <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -119,6 +121,9 @@ class Home extends React.Component {
                   dataSource={this.state.fileNames}
                   renderItem={item => (
                     <List.Item>
+                      <FileInfo key={item} value={item}>
+                        Info
+                      </FileInfo>
                       <Icon type='file' />
                       {item}
                     </List.Item>
@@ -130,6 +135,9 @@ class Home extends React.Component {
                   dataSource={this.state.fileNames}
                   renderItem={item => (
                     <List.Item>
+                      <FileInfo key={item} value={item}>
+                        Info
+                      </FileInfo>
                       <Icon type='file' />
                       {item}
                     </List.Item>

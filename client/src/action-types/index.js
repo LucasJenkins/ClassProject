@@ -9,3 +9,11 @@ export const LOADING = 'LOADING'
 export const TRASH_FILE = 'TRASH_FILE'
 export const DELETE_FILE = 'DELETE_FILE'
 export const RENAME_FILE = 'RENAME_FILE'
+
+// Home Reducer
+export const SET_SELECTED_FILE = 'SET_SELECTED_FILE'
+export const SET_FILE_LIST = 'SET_FILE_LIST'
+export const SET_CURRENT_FOLDER = 'SET_CURRENT_FOLDER'
+export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE'
+export const START_LOADING = 'START_LOADING'
+export const DONE_LOADING = 'DONE_LOADING'

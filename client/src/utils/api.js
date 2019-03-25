@@ -12,8 +12,7 @@ export const createApi = url => (endpoint, method) => (
     body,
     mode: 'cors',
     headers: {
-      'Content-Type': 'application/json',
-      'Content-Length': body.length.toString()
+      'Content-Type': 'application/json'
     }
   })
     .then(response => {

@@ -3,13 +3,15 @@ import composeEnhancers from '../middleware'
 
 import routeReducer from './routes'
 import uploadReducer from './upload'
-// import trashReducer from './trash'
+import trashReducer from './update'
+import homeReducer from './home'
 
 const createReducer = () => {
   return combineReducers({
+    home: homeReducer,
     route: routeReducer,
-    upload: uploadReducer
-    // trash:trashReducer
+    upload: uploadReducer,
+    trash: trashReducer
   })
 }
 

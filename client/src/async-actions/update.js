@@ -7,8 +7,8 @@ import { updateFiles } from '../api'
 
 export const trash = () => (dispatch, getState) => {
   dispatch(updateBegin())
-  const { fileObjects, currentSelection } = getState().update
-  const request = [{ id: fileObjects[currentSelection].id, isTrash: true }]
+  const { fileList, selectedFile } = getState().home
+  const request = [{ id: fileList[selectedFile].id, isTrash: true }]
   updateFiles(request, dispatch, updateDone, updateFailed)
 }
 
@@ -21,7 +21,7 @@ export const untrash = () => (dispatch, getState) => {
 
 export const rename = newName => (dispatch, getState) => {
   dispatch(updateBegin())
-  const { fileObjects, currentSelection } = getState().home
-  const request = [{ id: fileObjects[currentSelection].id, name: newName }]
+  const { fileList, selectedFile } = getState().home
+  const request = [{ id: fileList[selectedFile].id, name: newName }]
   updateFiles(request, dispatch, updateDone, updateFailed)
 }

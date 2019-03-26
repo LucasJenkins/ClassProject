@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Button, Radio, Upload, Modal, Icon, message } from 'antd'
+import { Layout, Button, Radio, Icon } from 'antd'
 import UploadModal from '../containers/UploadModal'
 
 import { Link } from 'react-router-dom'
@@ -71,23 +71,6 @@ class Trash extends React.Component {
   }
 
   render () {
-    const props = {
-      name: 'file',
-      action: '//jsonplaceholder.typicode.com/posts/',
-      headers: {
-        authorization: 'authorization-text'
-      },
-      onChange (info) {
-        if (info.file.status !== 'uploading') {
-        }
-        if (info.file.status === 'done') {
-          message.success(`${info.file.name} file uploaded successfully`)
-        } else if (info.file.status === 'error') {
-          message.error(`${info.file.name} file upload failed.`)
-        }
-      }
-    }
-
     return (
       <Layout>
         <Sider width={200} style={{ background: '#fff' }}>

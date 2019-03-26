@@ -6,6 +6,7 @@ import { Layout, Icon, List, Button, Radio } from 'antd'
 
 import SiderWrapper from '../containers/SiderNav'
 import UploadModal from '../containers/UploadModal'
+import FileInfo from '../components/FileInfo'
 
 const { Content, Header } = Layout
 

@@ -1,13 +1,13 @@
 import React from 'react'
-import { Drawer, Button } from 'antd'
-import PropTypes from 'prop-types'
+import { Drawer } from 'antd'
 import 'antd/dist/antd.css'
+import PropTypes from 'prop-types'
 
 export class FileInfo extends React.Component {
   constructor (props) {
     super(props)
     this.showDrawer = this.showDrawer.bind(this)
-    this.onClose = this.onClose(this)
+    this.onClose = this.onClose.bind(this)
     this.state = { visible: false }
   }
 
@@ -26,9 +26,10 @@ export class FileInfo extends React.Component {
   render () {
     return (
       <div>
-        <Button type='primary' onClick={this.showDrawer}>
-          Info
-        </Button>
+        <a type='primary' onClick={this.showDrawer} value={this.props.value}>
+          {this.props.value}
+        </a>
+
         <Drawer
           title={this.props.value}
           placement='right'

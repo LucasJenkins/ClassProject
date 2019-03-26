@@ -2,11 +2,12 @@ import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
 
-import { Layout, Icon, List, Button, Radio } from 'antd'
+import { Layout, List, Button, Radio } from 'antd'
 
 import SiderWrapper from '../containers/SiderNav'
 import UploadModal from '../containers/UploadModal'
 import FileInfo from '../components/FileInfo'
+import { _Table } from '../components/Table'
 
 const { Content, Header } = Layout
 
@@ -127,19 +128,20 @@ class Home extends React.Component {
               }}
             >
               {this.state.view === 'list' ? (
-                <List
-                  // bordered
-                  dataSource={this.state.fileNames}
-                  renderItem={item => (
-                    <List.Item>
-                      <FileInfo key={item} value={item}>
-                        Info
-                      </FileInfo>
-                      <Icon type='file' />
-                      {item}
-                    </List.Item>
-                  )}
-                />
+                //         <List
+                // // bordered
+                //           dataSource={this.state.fileNames}
+                //           renderItem={item => (
+                //             <List.Item>
+                //               <FileInfo key={item} value={item}>
+                //                 <CheckBox />
+                //                 <Icon type='file' />
+                //                 {item}
+                //               </FileInfo>
+                //             </List.Item>
+                //           )}
+                //         />
+                <_Table />
               ) : (
                 <List
                   grid={{ gutter: 16, column: 4 }}
@@ -149,8 +151,6 @@ class Home extends React.Component {
                       <FileInfo key={item} value={item}>
                         Info
                       </FileInfo>
-                      <Icon type='file' />
-                      {item}
                     </List.Item>
                   )}
                 />

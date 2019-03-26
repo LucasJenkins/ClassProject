@@ -33,7 +33,8 @@ export default function uploadReducer (state = uploadInitialState, action) {
       return {
         ...state,
         uploading: false,
-        files: []
+        files: [],
+        error: false
       }
     case SET_UPLOAD_FILES:
       return {

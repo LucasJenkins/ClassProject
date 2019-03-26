@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
 import { Layout, Menu, Icon } from 'antd'
+// import { uploadBegin } from '../../action-creators/upload'
 
 const { Sider } = Layout
 
@@ -24,7 +25,13 @@ const SiderWrapper = props => (
       <Menu.Item style={{ margin: '30px' }}>
         <Icon type='home' style={{ fontSize: '25px' }} /> Home
       </Menu.Item>
-      <Menu.Item style={{ margin: '30px' }} onClick={props.addFiles}>
+      <Menu.Item
+        style={{ margin: '30px' }}
+        onClick={() => {
+          props.addFiles()
+          props.uploadBegin()
+        }}
+      >
         <Icon type='upload' style={{ fontSize: '25px' }} /> Upload
       </Menu.Item>
       <Menu.Item style={{ margin: '30px' }}>
@@ -35,7 +42,8 @@ const SiderWrapper = props => (
 )
 
 SiderWrapper.propTypes = {
-  addFiles: PropTypes.func
+  addFiles: PropTypes.func,
+  uploadBegin: PropTypes.func
 }
 
 export default SiderWrapper

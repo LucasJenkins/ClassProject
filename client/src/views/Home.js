@@ -2,14 +2,13 @@ import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
 
-import { Layout, Icon, List } from 'antd'
+import { Layout, Icon, List, Button, Radio } from 'antd'
 
-import SiderWrapper from '../containers/SiderNav/index'
-import HeaderNav from '../containers/HeaderNav/index'
-import { FileInfo } from '../components/FileInfo'
-import UploadModal from '../containers/UploadModal/index'
+import SiderWrapper from '../containers/SiderNav'
+import UploadModal from '../containers/UploadModal'
+import FileInfo from '../components/FileInfo'
 
-const { Content } = Layout
+const { Content, Header } = Layout
 
 class Home extends React.Component {
   constructor (props) {
@@ -28,7 +27,6 @@ class Home extends React.Component {
     this.handleCancel = this.handleCancel.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleView = this.handleView.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
   }
 
   showModal () {
@@ -57,10 +55,10 @@ class Home extends React.Component {
     // e.preventDefault()
     this.setState(prevState => ({
       // modalFileInput: this.fileInput,
-      uploadedFiles: prevState.uploadedFiles.concat(this.state.modalFileInput),
-      fileNames: prevState.fileNames.concat(
-        this.fileInput.current.files[0].name
-      )
+      // uploadedFiles: prevState.uploadedFiles.concat(this.state.modalFileInput),
+      // fileNames: prevState.fileNames.concat(
+      //   this.fileInput.current.files[0].name
+      // )
     }))
   }
 
@@ -76,41 +74,54 @@ class Home extends React.Component {
     })
   }
 
-  handleSearch (value) {
-    console.log(
-      this.state.fileNames.filter(
-        el => el.toLowerCase() === value.toLowerCase()
-      )[0]
-    )
-  }
-
   render () {
-    console.log(this.state.uploadedFiles)
-    console.log(this.state.fileNames)
-
     return (
       <Layout>
         <SiderWrapper addFiles={this.showModal} />
 
         <Layout>
-          <HeaderNav
-            handleView={this.handleView}
-            view={this.state.view}
-            fileNames={this.state.fileNames}
-            handleSearch={this.handleSearch}
-          />
+          <Header
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around'
+            }}
+          >
+            <div />
+            <div>
+              <Button
+                type='primary'
+                shape='circle'
+                icon='folder'
+                size='large'
+              />
+              <Button
+                type='primary'
+                shape='circle'
+                icon='download'
+                size='large'
+              />
+              <Button
+                type='primary'
+                shape='circle'
+                icon='delete'
+                size='large'
+              />
+            </div>
+            <div>
+              <Radio.Group value='button'>
+                <Radio.Button value='list'>List</Radio.Button>
+                <Radio.Button value='grid'>Grid</Radio.Button>
+              </Radio.Group>
+            </div>
+          </Header>
 
-          <Layout style={{ padding: '0 24px 24px' }}>
-            {/* <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb> */}
+          <Layout>
             <Content
               style={{
                 background: '#fff',
                 padding: 24,
-                margin: 0,
+
                 minHeight: 280,
                 height: '100vh'
               }}

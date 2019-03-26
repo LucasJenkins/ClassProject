@@ -1,8 +1,9 @@
 import React from 'react'
 import { Layout, Button, Radio, Icon } from 'antd'
 import UploadModal from '../containers/UploadModal'
+import SiderWrapper from '../containers/SiderNav'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const { Header, Content, Sider } = Layout
 
@@ -73,7 +74,8 @@ class Trash extends React.Component {
   render () {
     return (
       <Layout>
-        <Sider width={200} style={{ background: '#fff' }}>
+        <SiderWrapper />
+        {/* <Sider width={200} style={{ background: '#fff' }}>
           <h1 className='logo'>Smartshare</h1>
           <div className='sider-buttons'>
             <Link to='/'>
@@ -104,7 +106,7 @@ class Trash extends React.Component {
               multiple
             />
           </div>
-        </Sider>
+        </Sider> */}
 
         <Layout>
           <Header

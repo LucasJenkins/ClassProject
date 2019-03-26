@@ -26,7 +26,6 @@ class Home extends React.Component {
     this.handleCancel = this.handleCancel.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleView = this.handleView.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
   }
 
   showModal () {
@@ -60,9 +59,6 @@ class Home extends React.Component {
       //   this.fileInput.current.files[0].name
       // )
     }))
-    console.log(this.state.modalFileInput.current.files[0].name)
-    // const data = this.state.modalFileInput.current.files[0].map(el => el)
-    console.log([...this.state.modalFileInput.current.files])
   }
 
   handleChange (e) {
@@ -77,18 +73,7 @@ class Home extends React.Component {
     })
   }
 
-  handleSearch (value) {
-    console.log(
-      this.state.fileNames.filter(
-        el => el.toLowerCase() === value.toLowerCase()
-      )[0]
-    )
-  }
-
   render () {
-    console.log(this.state.uploadedFiles)
-    console.log(this.state.fileNames)
-
     return (
       <Layout>
         <SiderWrapper addFiles={this.showModal} />
@@ -107,19 +92,19 @@ class Home extends React.Component {
                 type='primary'
                 shape='circle'
                 icon='folder'
-                size='Large'
+                size='large'
               />
               <Button
                 type='primary'
                 shape='circle'
                 icon='download'
-                size='Large'
+                size='large'
               />
               <Button
                 type='primary'
                 shape='circle'
                 icon='delete'
-                size='Large'
+                size='large'
               />
             </div>
             <div>
@@ -129,6 +114,7 @@ class Home extends React.Component {
               </Radio.Group>
             </div>
           </Header>
+
           <Layout style={{ padding: '0 24px 24px' }}>
             <Content
               style={{
@@ -145,6 +131,9 @@ class Home extends React.Component {
                   dataSource={this.state.fileNames}
                   renderItem={item => (
                     <List.Item>
+                      <FileInfo key={item} value={item}>
+                        Info
+                      </FileInfo>
                       <Icon type='file' />
                       {item}
                     </List.Item>
@@ -156,6 +145,9 @@ class Home extends React.Component {
                   dataSource={this.state.fileNames}
                   renderItem={item => (
                     <List.Item>
+                      <FileInfo key={item} value={item}>
+                        Info
+                      </FileInfo>
                       <Icon type='file' />
                       {item}
                     </List.Item>

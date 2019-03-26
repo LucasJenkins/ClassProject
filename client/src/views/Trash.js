@@ -1,11 +1,10 @@
 import React from 'react'
 import { Layout, Button, Radio, Upload, Modal, Icon, message } from 'antd'
+import UploadModal from '../containers/UploadModal'
 
 import { Link } from 'react-router-dom'
 
 const { Header, Content, Sider } = Layout
-
-const Dragger = Upload.Dragger
 
 class Trash extends React.Component {
   constructor (props) {
@@ -24,7 +23,6 @@ class Trash extends React.Component {
     this.handleCancel = this.handleCancel.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleView = this.handleView.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
   }
 
   showModal () {
@@ -72,14 +70,6 @@ class Trash extends React.Component {
     })
   }
 
-  handleSearch (value) {
-    console.log(
-      this.state.fileNames.filter(
-        el => el.toLowerCase() === value.toLowerCase()
-      )[0]
-    )
-  }
-
   render () {
     const props = {
       name: 'file',
@@ -89,7 +79,6 @@ class Trash extends React.Component {
       },
       onChange (info) {
         if (info.file.status !== 'uploading') {
-          console.log(info.file, info.fileList)
         }
         if (info.file.status === 'done') {
           message.success(`${info.file.name} file uploaded successfully`)
@@ -98,8 +87,6 @@ class Trash extends React.Component {
         }
       }
     }
-    console.log(this.state.uploadedFiles)
-    console.log(this.state.fileNames)
 
     return (
       <Layout>
@@ -125,28 +112,14 @@ class Trash extends React.Component {
               </Button>
             </Link>
 
-            <Modal
-              title='Upload File(s)'
+            <UploadModal
               visible={this.state.visible}
               onOk={this.handleOk}
               onCancel={this.handleCancel}
               fileInput={this.state.modalFileInput}
               fileNames={this.state.fileNames}
               multiple
-            >
-              <Dragger {...props}>
-                <p className='ant-upload-drag-icon'>
-                  <Icon type='inbox' />
-                </p>
-                <p className='ant-upload-text'>
-                  Click or drag file to this area to upload
-                </p>
-                <p className='ant-upload-hint'>
-                  Support for a single or bulk upload. Strictly prohibit from
-                  uploading company data or other band files
-                </p>
-              </Dragger>
-            </Modal>
+            />
           </div>
         </Sider>
 
@@ -159,12 +132,12 @@ class Trash extends React.Component {
             }}
           >
             <div>
-              <Button type='primary' shape='circle' icon='undo' size='Large' />
+              <Button type='primary' shape='circle' icon='undo' size='large' />
               <Button
                 type='primary'
                 shape='circle'
                 icon='delete'
-                size='Large'
+                size='large'
               />
             </div>
             <div>

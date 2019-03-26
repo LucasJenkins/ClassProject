@@ -35,7 +35,7 @@ UploadModal.propTypes = {
   onCancel: PropTypes.func,
   fileNames: PropTypes.array,
   handleSubmit: PropTypes.func,
-  fileInput: PropTypes.array,
+  fileInput: PropTypes.object,
   onOk: PropTypes.func
 }
 

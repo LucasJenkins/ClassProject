@@ -1,8 +1,10 @@
 import React from 'react'
 import UploadTest from '../containers/UploadTest'
+import GetTest from '../containers/GetTest'
 
 export default props => (
-  <React.Fragment>
+  <div>
     <UploadTest />
-  </React.Fragment>
+    <GetTest />
+  </div>
 )

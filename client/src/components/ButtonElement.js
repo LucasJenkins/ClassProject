@@ -17,9 +17,9 @@ class ButtonElement extends React.Component {
           </Radio.Group>
         </div>
         <div>
-          <Button type='primary' shape='circle' icon='folder' size='Large' />
-          <Button type='primary' shape='circle' icon='download' size='Large' />
-          <Button type='primary' shape='circle' icon='delete' size='Large' />
+          <Button type='primary' shape='circle' icon='folder' size='large' />
+          <Button type='primary' shape='circle' icon='download' size='large' />
+          <Button type='primary' shape='circle' icon='delete' size='large' />
         </div>
       </div>
     )

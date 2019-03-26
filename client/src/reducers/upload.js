@@ -5,14 +5,14 @@ import {
   UPLOAD_FAILED
 } from '../action-types/index'
 
-const initialState = {
+const uploadInitialState = {
   files: [],
   errorMessage: '',
   error: false,
   uploading: false
 }
 
-export default function uploadReducer (state = initialState, action) {
+export default function uploadReducer (state = uploadInitialState, action) {
   const { type, payload } = action
   switch (type) {
     case UPLOAD_BEGIN:
@@ -44,19 +44,3 @@ export default function uploadReducer (state = initialState, action) {
       return state
   }
 }
-
-/* export default function downloadFile (state = downloadinitialState, action) {
-    const {type,payload} = action
-  }
-
-  export default function trashFile (state = trashinitialState, action) {
-    const {type,payload} = action
-  }
-
-  export default function deleteFile (state = deleteinitialState, action) {
-    const {type,payload} = action
-  }
-
-  export default function updateFile (state = updateinitialState, action) {
-    const {type,payload} = action
-  } */

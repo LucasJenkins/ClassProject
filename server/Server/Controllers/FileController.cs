@@ -67,31 +67,14 @@ namespace FinalProjectFileManager.Controllers
       return _mapper.Map<StorageItem, StorageItemResponseDto>(_fileService.GetById(id));
     }
 
-    [HttpPatch("{id}/untrash")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
-    public ActionResult<StorageItemResponseDto> UntrashOne(int id)
-    {
-      return _mapper.Map<StorageItem, StorageItemResponseDto>(_fileService.UntrashItem(id));
-    }
-
-    [HttpPatch("untrash")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
-    public ActionResult<IEnumerable<StorageItemResponseDto>> Untrash([FromBody] IEnumerable<int> ids)
-    {
-      return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.UntrashItems(ids)).ToList();
-    }
-
     [HttpPost]
+    [RequestSizeLimit(100000000)]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     public ActionResult<IEnumerable<StorageItemResponseDto>> Post([FromBody] IEnumerable<CreateStorageItemDto> items)
     {
-
       _validationService.Validate(items);
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.CreateFiles(items)).ToList();
-
     }
 
     [HttpPatch]

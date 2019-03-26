@@ -10,3 +10,5 @@ export const getAllFiles = () => (dispatch, getState) => {
   const { currentFolder } = getState().home
   getFiles(currentFolder, dispatch, doneLoading, setErrorMessage)
 }
+
+export default getAllFiles

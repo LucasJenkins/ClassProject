@@ -1,9 +1,10 @@
 import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
-
-import { Layout, List, Button, Radio } from 'antd'
-
+// import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Layout, List, Radio } from 'antd'
+import { getAllFiles } from '../async-actions/getAllFiles'
 import SiderWrapper from '../containers/SiderNav'
 import UploadModal from '../containers/UploadModal'
 import FileInfo from '../components/FileInfo'
@@ -88,27 +89,6 @@ class Home extends React.Component {
               justifyContent: 'space-around'
             }}
           >
-            <div />
-            <div>
-              <Button
-                type='primary'
-                shape='circle'
-                icon='folder'
-                size='large'
-              />
-              <Button
-                type='primary'
-                shape='circle'
-                icon='download'
-                size='large'
-              />
-              <Button
-                type='primary'
-                shape='circle'
-                icon='delete'
-                size='large'
-              />
-            </div>
             <div>
               <Radio.Group value='button'>
                 <Radio.Button value='list'>List</Radio.Button>
@@ -128,19 +108,6 @@ class Home extends React.Component {
               }}
             >
               {this.state.view === 'list' ? (
-                //         <List
-                // // bordered
-                //           dataSource={this.state.fileNames}
-                //           renderItem={item => (
-                //             <List.Item>
-                //               <FileInfo key={item} value={item}>
-                //                 <CheckBox />
-                //                 <Icon type='file' />
-                //                 {item}
-                //               </FileInfo>
-                //             </List.Item>
-                //           )}
-                //         />
                 <_Table />
               ) : (
                 <List
@@ -171,4 +138,20 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+Home.propTypes = {
+  // getAllFiles: PropTypes.func,
+  // files: PropTypes.array
+}
+
+const mapStateToProps = state => ({
+  files: state.upload.files
+})
+
+const mapDispatchToProps = {
+  getAllFiles
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)

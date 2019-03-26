@@ -1,8 +1,6 @@
 import React from 'react'
-import { Layout, Input, Button, Radio, Upload, Modal, Icon } from 'antd'
-import SiderWrapper from '../containers/SiderNav'
-import HeaderNav from '../containers/HeaderNav'
-import UploadModal from '../containers/UploadModal'
+import { Layout, Button, Radio, Upload, Modal, Icon, message } from 'antd'
+
 import { Link } from 'react-router-dom'
 
 const { Header, Content, Sider } = Layout

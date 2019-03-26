@@ -5,7 +5,6 @@ import './index.css'
 import { Layout, Icon, List, Button, Radio } from 'antd'
 
 import SiderWrapper from '../containers/SiderNav'
-import HeaderNav from '../containers/HeaderNav'
 import UploadModal from '../containers/UploadModal'
 
 const { Content, Header } = Layout

@@ -2,13 +2,13 @@ import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
 
-import { Layout, Icon, List } from 'antd'
+import { Layout, Icon, List, Button, Radio } from 'antd'
 
-import SiderWrapper from '../containers/SiderNav/index'
-import HeaderNav from '../containers/HeaderNav/index'
-import UploadModal from '../containers/UploadModal/index'
+import SiderWrapper from '../containers/SiderNav'
+import HeaderNav from '../containers/HeaderNav'
+import UploadModal from '../containers/UploadModal'
 
-const { Content } = Layout
+const { Content, Header } = Layout
 
 class Home extends React.Component {
   constructor (props) {
@@ -56,11 +56,14 @@ class Home extends React.Component {
     // e.preventDefault()
     this.setState(prevState => ({
       // modalFileInput: this.fileInput,
-      uploadedFiles: prevState.uploadedFiles.concat(this.state.modalFileInput),
-      fileNames: prevState.fileNames.concat(
-        this.fileInput.current.files[0].name
-      )
+      // uploadedFiles: prevState.uploadedFiles.concat(this.state.modalFileInput),
+      // fileNames: prevState.fileNames.concat(
+      //   this.fileInput.current.files[0].name
+      // )
     }))
+    console.log(this.state.modalFileInput.current.files[0].name)
+    // const data = this.state.modalFileInput.current.files[0].map(el => el)
+    console.log([...this.state.modalFileInput.current.files])
   }
 
   handleChange (e) {
@@ -92,18 +95,42 @@ class Home extends React.Component {
         <SiderWrapper addFiles={this.showModal} />
 
         <Layout>
-          <HeaderNav
-            handleView={this.handleView}
-            view={this.state.view}
-            fileNames={this.state.fileNames}
-            handleSearch={this.handleSearch}
-          />
+          <Header
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around'
+            }}
+          >
+            <div />
+            <div>
+              <Button
+                type='primary'
+                shape='circle'
+                icon='folder'
+                size='Large'
+              />
+              <Button
+                type='primary'
+                shape='circle'
+                icon='download'
+                size='Large'
+              />
+              <Button
+                type='primary'
+                shape='circle'
+                icon='delete'
+                size='Large'
+              />
+            </div>
+            <div>
+              <Radio.Group value='button'>
+                <Radio.Button value='list'>List</Radio.Button>
+                <Radio.Button value='grid'>Grid</Radio.Button>
+              </Radio.Group>
+            </div>
+          </Header>
           <Layout style={{ padding: '0 24px 24px' }}>
-            {/* <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb> */}
             <Content
               style={{
                 background: '#fff',

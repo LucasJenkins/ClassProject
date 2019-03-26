@@ -55,7 +55,6 @@ UploadModal.propTypes = {
   // error: PropTypes.bool,
   errorMessage: PropTypes.string,
   visible: PropTypes.bool,
-<<<<<<< HEAD
   onCancel: PropTypes.func
 }
 
@@ -70,13 +69,6 @@ const mapDispatchToProps = {
   uploadDone,
   setUploadFiles,
   upload
-=======
-  onCancel: PropTypes.func,
-  fileNames: PropTypes.array,
-  handleSubmit: PropTypes.func,
-  fileInput: PropTypes.object,
-  onOk: PropTypes.func
->>>>>>> 158aa100bcdcb61e7e5e2516e56f8ca1ad572521
 }
 
 export default connect(

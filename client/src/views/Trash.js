@@ -1,11 +1,8 @@
 import React from 'react'
-import { Layout, Button, Radio, Icon } from 'antd'
-import UploadModal from '../containers/UploadModal'
+import { Layout, Button, Radio } from 'antd'
 import SiderWrapper from '../containers/SiderNav'
 
-// import { Link } from 'react-router-dom'
-
-const { Header, Content, Sider } = Layout
+const { Header, Content } = Layout
 
 class Trash extends React.Component {
   constructor (props) {
@@ -33,12 +30,9 @@ class Trash extends React.Component {
   }
 
   handleOk (e) {
-    // e.preventDefault()
     this.setState({
       visible: false
     })
-
-    // this.handleSubmit()
   }
 
   handleCancel (e) {
@@ -49,14 +43,7 @@ class Trash extends React.Component {
   }
 
   handleSubmit (e) {
-    // e.preventDefault()
-    this.setState(prevState => ({
-      // modalFileInput: this.fileInput,
-      // uploadedFiles: prevState.uploadedFiles.concat(this.state.modalFileInput),
-      // fileNames: prevState.fileNames.concat(
-      //   this.fileInput.current.files[0].name
-      // )
-    }))
+    this.setState(prevState => ({}))
   }
 
   handleChange (e) {
@@ -75,39 +62,6 @@ class Trash extends React.Component {
     return (
       <Layout>
         <SiderWrapper />
-        {/* <Sider width={200} style={{ background: '#fff' }}>
-          <h1 className='logo'>Smartshare</h1>
-          <div className='sider-buttons'>
-            <Link to='/'>
-              <Button className='btn'>
-                <Icon type='home' />
-                Home
-              </Button>
-            </Link>
-
-            <Button className='btn' onClick={this.showModal}>
-              <Icon type='upload' />
-              Upload
-            </Button>
-
-            <Link to='/trash'>
-              <Button className='btn'>
-                <Icon type='delete' />
-                Trash
-              </Button>
-            </Link>
-
-            <UploadModal
-              visible={this.state.visible}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-              fileInput={this.state.modalFileInput}
-              fileNames={this.state.fileNames}
-              multiple
-            />
-          </div>
-        </Sider> */}
-
         <Layout>
           <Header
             style={{

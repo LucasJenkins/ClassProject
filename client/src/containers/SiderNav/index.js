@@ -1,15 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
-// import './index.css'
-import { Link } from 'react-router-dom'
-import UploadModal from '../UploadModal'
-
 import { Layout, Menu, Icon } from 'antd'
 
 const { Sider } = Layout
-const SubMenu = Menu.SubMenu
-const MenuItemGroup = Menu.ItemGroup
 
 const SiderWrapper = props => (
   <Sider width={200}>

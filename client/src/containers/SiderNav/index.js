@@ -1,36 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
-// import './index.css'
-import { Link } from 'react-router-dom'
-
-import { Layout, Button, Icon } from 'antd'
+import { Layout, Menu, Icon } from 'antd'
 
 const { Sider } = Layout
 
 const SiderWrapper = props => (
-  <Sider width={200} style={{ background: '#fff' }}>
-    <h1 className='logo'>Smartshare</h1>
-    <div className='sider-buttons'>
-      <Link to='/'>
-        <Button className='btn'>
-          <Icon type='home' />
-          Home
-        </Button>
-      </Link>
+  <Sider width={200}>
+    <h1
+      style={{
+        background: '#fff',
+        backgroundColor: '#001529',
+        color: 'white',
+        textAlign: 'center',
+        marginTop: '15px',
+        fontSize: '30px'
+      }}
+    >
+      SmartShare
+    </h1>
 
-      <Button className='btn' onClick={props.addFiles}>
-        <Icon type='upload' />
-        Upload
-      </Button>
-
-      <Link to='/trash'>
-        <Button className='btn'>
-          <Icon type='delete' />
-          Trash
-        </Button>
-      </Link>
-    </div>
+    <Menu mode='vertical' theme='dark' style={{ height: '100%' }}>
+      <Menu.Item style={{ margin: '30px' }}>
+        <Icon type='home' style={{ fontSize: '25px' }} /> Home
+      </Menu.Item>
+      <Menu.Item style={{ margin: '30px' }} onClick={props.addFiles}>
+        <Icon type='upload' style={{ fontSize: '25px' }} /> Upload
+      </Menu.Item>
+      <Menu.Item style={{ margin: '30px' }}>
+        <Icon type='delete' style={{ fontSize: '25px' }} /> Trash
+      </Menu.Item>
+    </Menu>
   </Sider>
 )
 

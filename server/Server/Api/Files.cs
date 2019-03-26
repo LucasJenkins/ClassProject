@@ -28,7 +28,6 @@ namespace FinalProjectFileManager.Api
 
     }
 
-    //Changes by Chris
     public static bool DeleteFile(string path)
     {
       try
@@ -44,7 +43,6 @@ namespace FinalProjectFileManager.Api
       }
     }
 
-    //Changes by Chris
     public static void DeleteFiles(string[] paths)
     {
       foreach (var i in paths)

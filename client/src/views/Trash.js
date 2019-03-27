@@ -95,14 +95,22 @@ class Trash extends React.Component {
                   // bordered
                   dataSource={this.state.files}
                   renderItem={item => (
-                    <List.Item>
+                    <List.Item
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center'
+                      }}
+                    >
                       <Icon
                         type='file'
                         style={{
-                          padding: 5
+                          display: 'flex',
+                          flexDirection: 'column',
+                          fontSize: '40px'
                         }}
                       />
-                      {item}
+                      <span>{item}</span>
                     </List.Item>
                   )}
                 />
@@ -114,7 +122,12 @@ class Trash extends React.Component {
                     <List.Item>
                       <Icon
                         type='file'
-                        style={{ display: 'flex', flexDirection: 'column' }}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          fontSize: '40px',
+                          justifyContent: 'center'
+                        }}
                       />
                       {item}
                     </List.Item>

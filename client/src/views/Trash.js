@@ -1,57 +1,17 @@
 import React from 'react'
-import { Layout, Button, Radio, List } from 'antd'
-import SiderWrapper from '../containers/SiderNav'
-import FileInfo from '../components/FileInfo'
-import Table from '../components/Table'
+import { Layout, Radio, Menu, Icon, List } from 'antd'
+import { Link } from 'react-router-dom'
 
-const { Header, Content } = Layout
+const { Header, Content, Sider } = Layout
 
 class Trash extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      visible: false,
-      modalFileInput: React.createRef(),
-      uploadedFiles: [],
-      fileNames: [],
-      fileList: [],
-      view: 'list'
+      view: 'list',
+      files: ['file1', 'file2', 'file3']
     }
-
-    this.showModal = this.showModal.bind(this)
-    this.handleOk = this.handleOk.bind(this)
-    this.handleCancel = this.handleCancel.bind(this)
-    this.handleChange = this.handleChange.bind(this)
     this.handleView = this.handleView.bind(this)
-  }
-
-  showModal () {
-    this.setState({
-      visible: true
-    })
-  }
-
-  handleOk (e) {
-    this.setState({
-      visible: false
-    })
-  }
-
-  handleCancel (e) {
-    e.preventDefault()
-    this.setState({
-      visible: false
-    })
-  }
-
-  handleSubmit (e) {
-    this.setState(prevState => ({}))
-  }
-
-  handleChange (e) {
-    this.setState({
-      modalInput: e.target.value
-    })
   }
 
   handleView (e) {
@@ -64,16 +24,45 @@ class Trash extends React.Component {
   render () {
     return (
       <Layout>
-        <SiderWrapper />
+        <Sider width={200}>
+          <h1
+            style={{
+              background: '#fff',
+              backgroundColor: '#001529',
+              color: 'white',
+              textAlign: 'center',
+              marginTop: '15px',
+              fontSize: '30px'
+            }}
+          >
+            SmartShare
+          </h1>
+
+          <Menu
+            mode='vertical'
+            theme='dark'
+            style={{ height: '100%', marginTop: 95 }}
+          >
+            <Menu.Item style={{ margin: '30px' }}>
+              <Link to='/'>
+                <Icon type='home' style={{ fontSize: '25px' }} /> Home
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item style={{ margin: '30px' }}>
+              <Icon type='delete' style={{ fontSize: '25px' }} /> Trash
+            </Menu.Item>
+          </Menu>
+        </Sider>
         <Layout>
           <Header
             style={{
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'space-around'
+              justifyContent: 'center'
             }}
           >
-            <div>
+            {/* <div>
               <Button type='primary' shape='circle' icon='undo' size='large' />
               <Button
                 type='primary'
@@ -81,43 +70,59 @@ class Trash extends React.Component {
                 icon='delete'
                 size='large'
               />
-            </div>
+            </div> */}
             <div>
               <Radio.Group value='button'>
-                <Radio.Button onClick={this.handleView} value='list'>
+                <Radio.Button value='list' onClick={this.handleView}>
                   List
                 </Radio.Button>
-                <Radio.Button onClick={this.handleView} value='grid'>
+                <Radio.Button value='grid' onClick={this.handleView}>
                   Grid
                 </Radio.Button>
               </Radio.Group>
             </div>
           </Header>
-          <Layout style={{ padding: '0 24px 24px' }}>
+          <Layout style={{ boxSizing: 'border-box' }}>
             <Content
               style={{
                 background: '#fff',
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-                height: '100vh'
+                width: '100%',
+                height: '82vh',
+                padding: 30
               }}
-            />
-            {this.state.view === 'list' ? (
-              <Table />
-            ) : (
-              <List
-                grid={{ gutter: 16, column: 4 }}
-                dataSource={this.state.fileNames}
-                renderItem={item => (
-                  <List.Item>
-                    <FileInfo key={item} value={item}>
-                      Info
-                    </FileInfo>
-                  </List.Item>
-                )}
-              />
-            )}
+            >
+              {this.state.view === 'list' ? (
+                <List
+                  // bordered
+                  dataSource={this.state.files}
+                  renderItem={item => (
+                    <List.Item>
+                      <Icon
+                        type='file'
+                        style={{
+                          padding: 5
+                        }}
+                      />
+                      {item}
+                    </List.Item>
+                  )}
+                />
+              ) : (
+                <List
+                  grid={{ gutter: 16, column: 4 }}
+                  dataSource={this.state.files}
+                  renderItem={item => (
+                    <List.Item>
+                      <Icon
+                        type='file'
+                        style={{ display: 'flex', flexDirection: 'column' }}
+                      />
+                      {item}
+                    </List.Item>
+                  )}
+                />
+              )}
+            </Content>
           </Layout>
         </Layout>
       </Layout>

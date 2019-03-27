@@ -2,14 +2,17 @@ import {
   SET_UPLOAD_FILES,
   UPLOAD_BEGIN,
   UPLOAD_DONE,
-  UPLOAD_FAILED
+  UPLOAD_FAILED,
+  SHOW_MODAL,
+  HIDE_MODAL
 } from '../action-types/index'
 
 const uploadInitialState = {
   files: [],
   errorMessage: '',
   error: false,
-  uploading: false
+  uploading: false,
+  modalVisible: false
 }
 
 export default function uploadReducer (state = uploadInitialState, action) {
@@ -20,7 +23,8 @@ export default function uploadReducer (state = uploadInitialState, action) {
         ...state,
         error: false,
         errorMessage: '',
-        uploading: true
+        uploading: true,
+        modalVisible: true
       }
     case UPLOAD_FAILED:
       return {
@@ -33,13 +37,25 @@ export default function uploadReducer (state = uploadInitialState, action) {
       return {
         ...state,
         uploading: false,
-        files: payload,
-        error: false
+        files: [],
+        error: false,
+        modalVisible: false
       }
     case SET_UPLOAD_FILES:
       return {
         ...state,
         files: payload
+      }
+
+    case SHOW_MODAL:
+      return {
+        ...state,
+        modalVisible: false
+      }
+    case HIDE_MODAL:
+      return {
+        ...state,
+        modalVisible: false
       }
     default:
       return state

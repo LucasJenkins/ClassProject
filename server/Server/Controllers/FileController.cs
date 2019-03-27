@@ -68,7 +68,7 @@ namespace FinalProjectFileManager.Controllers
     }
 
     [HttpPost]
-    [RequestSizeLimit(100000000)]
+    [DisableRequestSizeLimit]
     [ProducesResponseType(409)]
     [ProducesResponseType(201)]
     public ActionResult<IEnumerable<StorageItemResponseDto>> Post([FromBody] IEnumerable<CreateStorageItemDto> items)
@@ -82,7 +82,7 @@ namespace FinalProjectFileManager.Controllers
     [ProducesResponseType(404)]
     public ActionResult<IEnumerable<StorageItemResponseDto>> Update([FromBody] IEnumerable<UpdateStorageItemDto> items)
     {
-      _validationService.Validate(items);
+      //_validationService.Validate(items);
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.UpdateItems(items)).ToList();
     }
 
@@ -117,34 +117,33 @@ namespace FinalProjectFileManager.Controllers
     [HttpGet("{id}/download")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public ActionResult<IEnumerable<DownloadResponseDto>> DownloadOne(int id)
+    public ActionResult<DownloadResponseDto> DownloadOne(int id)
     {
-      var data = _fileService.Download(new List<int>(id)).ToList();
-      return data;
+      return _fileService.Download(id);
     }
 
-    [HttpGet("download")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
-    public ActionResult<IEnumerable<DownloadResponseDto>> Download(string ids)
-    {
-      var idList = new List<int>();
-      if (ids != null)
-      {
-        foreach (var id in ids.Split(','))
-        {
-          int parsedId = 0;
-          if (Int32.TryParse(id, out parsedId))
-          {
-            idList.Add(parsedId);
-          }
-        }
-        idList = idList.Select(id => id).Distinct().ToList();
+    // [HttpGet("download")]
+    // [ProducesResponseType(200)]
+    // [ProducesResponseType(404)]
+    // public ActionResult<IEnumerable<DownloadResponseDto>> Download(string ids)
+    // {
+    //   var idList = new List<int>();
+    //   if (ids != null)
+    //   {
+    //     foreach (var id in ids.Split(','))
+    //     {
+    //       int parsedId = 0;
+    //       if (Int32.TryParse(id, out parsedId))
+    //       {
+    //         idList.Add(parsedId);
+    //       }
+    //     }
+    //     idList = idList.Select(id => id).Distinct().ToList();
 
-        return _fileService.Download(idList).ToList();
-      }
+    //     return _fileService.Download(idList).ToList();
+    //   }
 
-      return StatusCode(400);
-    }
+    //   return StatusCode(400);
+    // }
   }
 }

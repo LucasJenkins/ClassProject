@@ -81,13 +81,13 @@ namespace FinalProjectFileManager.Services
       newItem.IsFolder = item.IsFolder;
       newItem.Created = DateTime.Now;
       newItem.IsTrash = false;
+      newItem.Size = item.Size;
+      newItem.Type = item.Type;
       newItem.Guid = Guid.NewGuid().ToString();
       if (!newItem.IsFolder)
       {
         Files.WriteToFile(newItem.Guid, item.Data);
       }
-      _context.StorageItems.Add(newItem);
-      _context.SaveChanges();
 
       return newItem;
     }
@@ -99,6 +99,8 @@ namespace FinalProjectFileManager.Services
       {
         result.Add(CreateFile(item));
       }
+      _context.StorageItems.AddRange(result);
+      _context.SaveChanges();
       return result;
     }
 
@@ -129,6 +131,7 @@ namespace FinalProjectFileManager.Services
       result.Data = data;
       result.Name = file.Name;
       result.Id = file.Id;
+      result.Type = file.Type;
       return result;
     }
 
@@ -152,7 +155,7 @@ namespace FinalProjectFileManager.Services
 
     public IEnumerable<StorageItem> GetAllFromRoot()
     {
-      return _context.StorageItems.Where(file => file.FolderId == 0).ToList();
+      return _context.StorageItems.Where(file => file.FolderId == 0 && !file.IsTrash).ToList();
     }
 
     public IEnumerable<StorageItem> GetAllFromTrash()
@@ -168,28 +171,26 @@ namespace FinalProjectFileManager.Services
         Files.WriteToFile(storageItem.Guid, update.Data);
       }
 
-      if (update.FolderId != -1)
-      {
-        storageItem.FolderId = update.FolderId;
-      }
+      // if (update.FolderId != -1)
+      // {
+      //   storageItem.FolderId = update.FolderId;
+      // }
 
-      if (update.Name.Length > 0)
-      {
-        storageItem.Name = update.Name;
-      }
+      // if (update.Name.Length > 0)
+      // {
+      //   storageItem.Name = update.Name;
+      // }
 
-      if(update.IsTrash)
-      {
-        storageItem.IsTrash = update.IsTrash;
-      }
-      
-      if(!update.IsTrash)
+      if (update.IsTrash)
       {
         storageItem.IsTrash = update.IsTrash;
       }
 
-      _context.StorageItems.Update(storageItem);
-      _context.SaveChanges();
+      if (!update.IsTrash)
+      {
+        storageItem.IsTrash = update.IsTrash;
+      }
+
       return storageItem;
     }
 
@@ -200,6 +201,8 @@ namespace FinalProjectFileManager.Services
       {
         result.Add(UpdateItem(update));
       }
+      _context.StorageItems.UpdateRange(result);
+      _context.SaveChanges();
       return result;
     }
 

@@ -5,7 +5,12 @@ import './index.css'
 import { connect } from 'react-redux'
 import { upload } from '../../async-actions/upload'
 import PropTypes from 'prop-types'
-import { setUploadFiles, uploadDone } from '../../action-creators/upload'
+import {
+  setUploadFiles,
+  uploadDone,
+  showModal,
+  hideModal
+} from '../../action-creators/upload'
 
 class UploadModal extends React.Component {
   constructor (props) {
@@ -62,13 +67,16 @@ const mapStateToProps = state => ({
   files: state.upload.files,
   uploading: state.upload.uploading,
   error: state.upload.error,
-  errorMessage: state.upload.errorMessage
+  errorMessage: state.upload.errorMessage,
+  modalVisible: state.upload.modalVisible
 })
 
 const mapDispatchToProps = {
   uploadDone,
   setUploadFiles,
-  upload
+  upload,
+  showModal,
+  hideModal
 }
 
 export default connect(

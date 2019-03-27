@@ -22,3 +22,7 @@ export const SET_CURRENT_FOLDER = 'SET_CURRENT_FOLDER'
 export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE'
 export const START_LOADING = 'START_LOADING'
 export const DONE_LOADING = 'DONE_LOADING'
+
+// Modal
+export const SHOW_MODAL = 'SHOW_MODAL'
+export const HIDE_MODAL = 'HIDE_MODAL'

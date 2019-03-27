@@ -10,6 +10,9 @@ import UploadModal from '../containers/UploadModal'
 import FileInfo from '../components/FileInfo'
 import { _Table } from '../components/Table'
 
+import { showModal, hideModal } from '../action-creators/upload'
+import { modalVisible } from '../reducers/upload'
+
 const { Content, Header } = Layout
 
 class Home extends React.Component {
@@ -39,11 +42,9 @@ class Home extends React.Component {
 
   handleOk (e) {
     e.preventDefault()
-    this.setState(prevState => ({
+    this.setState({
       visible: false
-    }))
-
-    this.handleSubmit()
+    })
   }
 
   handleCancel (e) {
@@ -148,11 +149,14 @@ Home.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  files: state.upload.files
+  files: state.upload.files,
+  modalVisible: state.upload.modalVisible
 })
 
 const mapDispatchToProps = {
-  getAllFiles
+  getAllFiles,
+  showModal,
+  hideModal
 }
 
 export default connect(

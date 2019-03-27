@@ -81,13 +81,13 @@ namespace FinalProjectFileManager.Services
       newItem.IsFolder = item.IsFolder;
       newItem.Created = DateTime.Now;
       newItem.IsTrash = false;
+      newItem.Size = item.Size;
+      newItem.Type = item.Type;
       newItem.Guid = Guid.NewGuid().ToString();
       if (!newItem.IsFolder)
       {
         Files.WriteToFile(newItem.Guid, item.Data);
       }
-      _context.StorageItems.Add(newItem);
-      _context.SaveChanges();
 
       return newItem;
     }
@@ -99,6 +99,8 @@ namespace FinalProjectFileManager.Services
       {
         result.Add(CreateFile(item));
       }
+      _context.StorageItems.AddRange(result);
+      _context.SaveChanges();
       return result;
     }
 
@@ -129,6 +131,7 @@ namespace FinalProjectFileManager.Services
       result.Data = data;
       result.Name = file.Name;
       result.Id = file.Id;
+      result.Type = file.Type;
       return result;
     }
 
@@ -178,12 +181,12 @@ namespace FinalProjectFileManager.Services
         storageItem.Name = update.Name;
       }
 
-      if(update.IsTrash)
+      if (update.IsTrash)
       {
         storageItem.IsTrash = update.IsTrash;
       }
-      
-      if(!update.IsTrash)
+
+      if (!update.IsTrash)
       {
         storageItem.IsTrash = update.IsTrash;
       }

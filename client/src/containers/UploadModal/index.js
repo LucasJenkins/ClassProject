@@ -5,7 +5,12 @@ import './index.css'
 import { connect } from 'react-redux'
 import { upload } from '../../async-actions/upload'
 import PropTypes from 'prop-types'
-import { setUploadFiles, hideModal } from '../../action-creators/upload'
+import {
+  setUploadFiles,
+  uploadDone,
+  showModal,
+  hideModal
+} from '../../action-creators/upload'
 
 class UploadModal extends React.Component {
   constructor (props) {
@@ -17,25 +22,35 @@ class UploadModal extends React.Component {
   }
 
   render () {
-    const { files, upload, uploading, errorMessage, visible } = this.props
+    console.log(this.props)
+    const { files, upload, uploading, /* error, */ errorMessage } = this.props
 
-    const mappedFiles = files
-      ? files.map((file, idx) => <p key={idx}>{file.name}</p>)
-      : []
+    let mappedFiles = []
+
+    if (uploading) {
+      return <p>Uploading files...</p>
+    }
+    if (files) {
+      mappedFiles = files.map((file, idx) => <p key={idx}>{file.name}</p>)
+    } else {
+      mappedFiles = <p />
+    }
     return (
       <Modal
         title='Upload File(s)'
-        visible={visible}
-        onOk={upload}
+        visible={this.props.modalVisible}
+        onOk={() => {
+          upload()
+          this.props.hideModal()
+        }}
+        onCancel={this.props.hideModal}
         okText='Upload'
-        onCancel={hideModal}
+        multiple
       >
         <h3>Files to upload:</h3>
         <div className='files'>{mappedFiles}</div>
         <input type='file' multiple onChange={this.handleChange} />
-        <div>{uploading ? 'Uploading ... ' : ''}</div>
         <div className='error'>{errorMessage}</div>
-        <button onClick={() => Modal.destroyAll()}>Close</button>
       </Modal>
     )
   }
@@ -43,11 +58,14 @@ class UploadModal extends React.Component {
 
 UploadModal.propTypes = {
   setUploadFiles: PropTypes.func,
+  // uploadDone: PropTypes.func,
   files: PropTypes.array,
   upload: PropTypes.func,
   uploading: PropTypes.bool,
+  // error: PropTypes.bool,
   errorMessage: PropTypes.string,
-  visible: PropTypes.bool
+  modalVisible: PropTypes.bool,
+  hideModal: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -55,14 +73,16 @@ const mapStateToProps = state => ({
   uploading: state.upload.uploading,
   error: state.upload.error,
   errorMessage: state.upload.errorMessage,
-  visible: state.upload.modalVisible
+  modalVisible: state.upload.modalVisible
 })
 
-const mapDispatchToProps = dispatch => ({
-  hideModal: () => dispatch(hideModal()),
-  setUploadFiles: () => dispatch(setUploadFiles()),
-  upload: () => dispatch(upload())
-})
+const mapDispatchToProps = {
+  uploadDone,
+  setUploadFiles,
+  upload,
+  showModal,
+  hideModal
+}
 
 export default connect(
   mapStateToProps,

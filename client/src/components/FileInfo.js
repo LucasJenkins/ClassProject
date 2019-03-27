@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer } from 'antd'
+import { Drawer, Icon } from 'antd'
 import 'antd/dist/antd.css'
 import PropTypes from 'prop-types'
 
@@ -26,7 +26,13 @@ export class FileInfo extends React.Component {
   render () {
     return (
       <div>
-        <a type='primary' onClick={this.showDrawer} value={this.props.value}>
+        <a
+          type='primary'
+          onClick={this.showDrawer}
+          value={this.props.value}
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <Icon type='file' style={{ fontSize: '25px' }} />
           {this.props.value}
         </a>
 

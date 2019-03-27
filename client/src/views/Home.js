@@ -3,12 +3,12 @@ import 'antd/dist/antd.css'
 import './index.css'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Layout, List, Radio } from 'antd'
+import { Layout, List, Radio, Button } from 'antd'
 import { getAllFiles } from '../async-actions/getAllFiles'
 import SiderWrapper from '../containers/SiderNav'
 import UploadModal from '../containers/UploadModal'
 import FileInfo from '../components/FileInfo'
-import { _Table } from '../components/Table'
+import Table from '../components/Table'
 
 const { Content, Header } = Layout
 
@@ -21,7 +21,8 @@ class Home extends React.Component {
       uploadedFiles: [],
       fileNames: [],
       fileList: [],
-      view: 'list'
+      view: 'list',
+      files: []
     }
 
     this.showModal = this.showModal.bind(this)
@@ -71,6 +72,7 @@ class Home extends React.Component {
   }
 
   handleView (e) {
+    console.log(this.state)
     this.setState({
       view: e.target.value
     })
@@ -90,9 +92,25 @@ class Home extends React.Component {
             }}
           >
             <div>
+              <Button
+                type='primary'
+                shape='circle'
+                icon='upload'
+                size='large'
+                onClick={() => {
+                  this.addFiles()
+                  this.uploadBegin()
+                }}
+              />
+            </div>
+            <div>
               <Radio.Group value='button'>
-                <Radio.Button value='list'>List</Radio.Button>
-                <Radio.Button value='grid'>Grid</Radio.Button>
+                <Radio.Button onClick={this.handleView} value='list'>
+                  List
+                </Radio.Button>
+                <Radio.Button onClick={this.handleView} value='grid'>
+                  Grid
+                </Radio.Button>
               </Radio.Group>
             </div>
           </Header>
@@ -108,7 +126,7 @@ class Home extends React.Component {
               }}
             >
               {this.state.view === 'list' ? (
-                <_Table />
+                <Table />
               ) : (
                 <List
                   grid={{ gutter: 16, column: 4 }}
@@ -140,7 +158,9 @@ class Home extends React.Component {
 
 Home.propTypes = {
   // getAllFiles: PropTypes.func,
-  // files: PropTypes.array
+  // files: PropTypes.array,
+  // addFiles: PropTypes.func,
+  // uploadBegin: PropTypes.func
 }
 
 const mapStateToProps = state => ({

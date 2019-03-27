@@ -1,7 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
 import { Layout, Menu, Icon } from 'antd'
+import { Link } from 'react-router-dom'
 // import { uploadBegin } from '../../action-creators/upload'
 
 const { Sider } = Layout
@@ -23,9 +24,11 @@ const SiderWrapper = props => (
 
     <Menu mode='vertical' theme='dark' style={{ height: '100%' }}>
       <Menu.Item style={{ margin: '30px' }}>
-        <Icon type='home' style={{ fontSize: '25px' }} /> Home
+        <Link to='/'>
+          <Icon type='home' style={{ fontSize: '25px' }} /> Home
+        </Link>
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         style={{ margin: '30px' }}
         onClick={() => {
           props.addFiles()
@@ -33,17 +36,19 @@ const SiderWrapper = props => (
         }}
       >
         <Icon type='upload' style={{ fontSize: '25px' }} /> Upload
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item style={{ margin: '30px' }}>
-        <Icon type='delete' style={{ fontSize: '25px' }} /> Trash
+        <Link to='/trash'>
+          <Icon type='delete' style={{ fontSize: '25px' }} /> Trash
+        </Link>
       </Menu.Item>
     </Menu>
   </Sider>
 )
 
 SiderWrapper.propTypes = {
-  addFiles: PropTypes.func,
-  uploadBegin: PropTypes.func
+  // addFiles: PropTypes.func,
+  // uploadBegin: PropTypes.func
 }
 
 export default SiderWrapper

@@ -11,6 +11,6 @@ export const setUploadFiles = filenames =>
 
 export const uploadBegin = () => createAction(UPLOAD_BEGIN)
 
-export const uploadDone = () => createAction(UPLOAD_DONE)
+export const uploadDone = payload => createAction(UPLOAD_DONE, payload)
 
 export const uploadFailed = message => createAction(UPLOAD_FAILED, message)

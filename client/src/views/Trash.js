@@ -1,6 +1,8 @@
 import React from 'react'
-import { Layout, Button, Radio } from 'antd'
+import { Layout, Button, Radio, List } from 'antd'
 import SiderWrapper from '../containers/SiderNav'
+import FileInfo from '../components/FileInfo'
+import Table from '../components/Table'
 
 const { Header, Content } = Layout
 
@@ -53,6 +55,7 @@ class Trash extends React.Component {
   }
 
   handleView (e) {
+    console.log(this.state)
     this.setState({
       view: e.target.value
     })
@@ -81,8 +84,12 @@ class Trash extends React.Component {
             </div>
             <div>
               <Radio.Group value='button'>
-                <Radio.Button value='list'>List</Radio.Button>
-                <Radio.Button value='grid'>Grid</Radio.Button>
+                <Radio.Button onClick={this.handleView} value='list'>
+                  List
+                </Radio.Button>
+                <Radio.Button onClick={this.handleView} value='grid'>
+                  Grid
+                </Radio.Button>
               </Radio.Group>
             </div>
           </Header>
@@ -96,6 +103,21 @@ class Trash extends React.Component {
                 height: '100vh'
               }}
             />
+            {this.state.view === 'list' ? (
+              <Table />
+            ) : (
+              <List
+                grid={{ gutter: 16, column: 4 }}
+                dataSource={this.state.fileNames}
+                renderItem={item => (
+                  <List.Item>
+                    <FileInfo key={item} value={item}>
+                      Info
+                    </FileInfo>
+                  </List.Item>
+                )}
+              />
+            )}
           </Layout>
         </Layout>
       </Layout>

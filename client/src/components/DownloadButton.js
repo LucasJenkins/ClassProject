@@ -1,62 +1,30 @@
 import React from 'react'
-import { Modal, Icon } from 'antd'
+import { connect } from 'react-redux'
+import { PropTypes } from 'prop-types'
+import { Icon } from 'antd'
+import { download } from '../async-actions/download'
 
-export class DownloadButton extends React.Component {
-  constructor (props) {
-    super(props)
-    this.showModal = this.showModal.bind(this)
-    this.handleOk = this.handleOk.bind(this)
-    this.handleDownload = this.handleDownload.bind(this)
-    this.state = { visible: false }
-  }
-
-  showModal () {
-    this.setState({
-      visible: true
-    })
-  }
-
-  handleOk (e) {
-    console.log(e)
-    this.setState({
-      visible: false
-    })
-  }
-
-  handleDownload (e) {
-    this.showModal(e)
-    // Dispatch action to download state
-  }
-  // handleCancel (e) {
-  //   console.log(e)
-  //   this.setState({
-  //     visible: false
-  //   })
-  // }
-
+class DownloadButton extends React.Component {
   render () {
+    const { id, download } = this.props
     return (
-      <div>
-        <Icon
-          onClick={this.handleDownload}
-          type='download'
-          style={{ fontsize: '10px' }}
-        />
-        <Modal
-          title='Download'
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          // value={this.props.value}
-        >
-          <p>
-            <Icon type='download' style={{ fontsize: '10px' }} />
-            Download Complete
-          </p>
-        </Modal>
-      </div>
+      <button onClick={() => download(id)}>
+        <Icon type='download' style={{ fontsize: '10px' }} />
+      </button>
     )
   }
 }
 
-export default DownloadButton
+DownloadButton.propTypes = {
+  id: PropTypes.number,
+  download: PropTypes.func
+}
+
+const mapDispatchToProps = dispatch => ({
+  download: id => dispatch(download(id))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(DownloadButton)

@@ -5,7 +5,7 @@ import './index.css'
 import { connect } from 'react-redux'
 import { upload } from '../../async-actions/upload'
 import PropTypes from 'prop-types'
-import { setUploadFiles, uploadDone } from '../../action-creators/upload'
+import { setUploadFiles } from '../../action-creators/upload'
 
 class UploadModal extends React.Component {
   constructor (props) {
@@ -17,22 +17,15 @@ class UploadModal extends React.Component {
   }
 
   render () {
-    const { files, upload, uploading, /* error, */ errorMessage } = this.props
+    const { files, upload, uploading, errorMessage, visible } = this.props
 
-    let mappedFiles = []
-
-    if (uploading) {
-      return <p>Uploading files...</p>
-    }
-    if (files) {
-      mappedFiles = files.map((file, idx) => <p key={idx}>{file.name}</p>)
-    } else {
-      mappedFiles = <p />
-    }
+    const mappedFiles = files
+      ? files.map((file, idx) => <p key={idx}>{file.name}</p>)
+      : []
     return (
       <Modal
         title='Upload File(s)'
-        visible={this.props.visible}
+        visible={visible}
         onOk={upload}
         onCancel={this.props.onCancel}
         okText='Upload'
@@ -40,6 +33,7 @@ class UploadModal extends React.Component {
         <h3>Files to upload:</h3>
         <div className='files'>{mappedFiles}</div>
         <input type='file' multiple onChange={this.handleChange} />
+        <div>{uploading ? 'Uploading ... ' : ''}</div>
         <div className='error'>{errorMessage}</div>
       </Modal>
     )
@@ -48,11 +42,9 @@ class UploadModal extends React.Component {
 
 UploadModal.propTypes = {
   setUploadFiles: PropTypes.func,
-  // uploadDone: PropTypes.func,
   files: PropTypes.array,
   upload: PropTypes.func,
   uploading: PropTypes.bool,
-  // error: PropTypes.bool,
   errorMessage: PropTypes.string,
   visible: PropTypes.bool,
   onCancel: PropTypes.func
@@ -62,11 +54,11 @@ const mapStateToProps = state => ({
   files: state.upload.files,
   uploading: state.upload.uploading,
   error: state.upload.error,
-  errorMessage: state.upload.errorMessage
+  errorMessage: state.upload.errorMessage,
+  visible: state.upload.modalVisible
 })
 
 const mapDispatchToProps = {
-  uploadDone,
   setUploadFiles,
   upload
 }

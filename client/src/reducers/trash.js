@@ -7,7 +7,6 @@ import {
 
 const updateInitialState = {
   fileObjects: [],
-  currentSelection: 0,
   errorMessage: '',
   error: false
 }
@@ -30,7 +29,7 @@ export default function trashReducer (state = updateInitialState, action) {
     case UPDATE_DONE:
       return {
         ...state,
-        fileObjects: []
+        fileObjects: payload
       }
     case SET_UPDATE_FILES:
       return {

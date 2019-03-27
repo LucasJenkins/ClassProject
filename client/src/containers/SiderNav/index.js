@@ -1,8 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
 import { Layout, Menu, Icon } from 'antd'
-// import { uploadBegin } from '../../action-creators/upload'
+import { uploadBegin } from '../../action-creators/upload'
 
 const { Sider } = Layout
 
@@ -28,7 +29,6 @@ const SiderWrapper = props => (
       <Menu.Item
         style={{ margin: '30px' }}
         onClick={() => {
-          props.addFiles()
           props.uploadBegin()
         }}
       >
@@ -42,8 +42,14 @@ const SiderWrapper = props => (
 )
 
 SiderWrapper.propTypes = {
-  addFiles: PropTypes.func,
   uploadBegin: PropTypes.func
 }
 
-export default SiderWrapper
+const mapDispatchToProps = dispatch => ({
+  uploadBegin: () => dispatch(uploadBegin())
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SiderWrapper)

@@ -7,8 +7,5 @@ import { getFiles } from '../api'
 
 export const getAllFiles = () => (dispatch, getState) => {
   dispatch(startLoading())
-  const { currentFolder } = getState().home
-  getFiles(currentFolder, dispatch, doneLoading, setErrorMessage)
+  getFiles(undefined, dispatch, doneLoading, setErrorMessage)
 }
-
-export default getAllFiles

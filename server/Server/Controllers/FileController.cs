@@ -82,7 +82,7 @@ namespace FinalProjectFileManager.Controllers
     [ProducesResponseType(404)]
     public ActionResult<IEnumerable<StorageItemResponseDto>> Update([FromBody] IEnumerable<UpdateStorageItemDto> items)
     {
-      _validationService.Validate(items);
+      //_validationService.Validate(items);
       return _mapper.Map<IEnumerable<StorageItem>, IEnumerable<StorageItemResponseDto>>(_fileService.UpdateItems(items)).ToList();
     }
 

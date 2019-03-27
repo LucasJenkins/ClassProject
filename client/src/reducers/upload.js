@@ -9,7 +9,8 @@ const uploadInitialState = {
   files: [],
   errorMessage: '',
   error: false,
-  uploading: false
+  uploading: false,
+  modalVisible: false
 }
 
 export default function uploadReducer (state = uploadInitialState, action) {
@@ -20,7 +21,8 @@ export default function uploadReducer (state = uploadInitialState, action) {
         ...state,
         error: false,
         errorMessage: '',
-        uploading: true
+        uploading: true,
+        modalVisible: true
       }
     case UPLOAD_FAILED:
       return {
@@ -34,7 +36,8 @@ export default function uploadReducer (state = uploadInitialState, action) {
         ...state,
         uploading: false,
         files: [],
-        error: false
+        error: false,
+        modalVisible: false
       }
     case SET_UPLOAD_FILES:
       return {

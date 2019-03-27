@@ -1,14 +1,13 @@
 import {
   updateBegin,
-  updateDone,
-  updateFailed
+  updateFailed,
+  deleteFile
 } from '../action-creators/updateFile'
 
 import { deleteFiles } from '../api'
 
-export const deleteFile = () => (dispatch, getState) => {
+export const del = id => (dispatch, getState) => {
   dispatch(updateBegin())
-  const { fileObjects, currentSelection } = getState().trash
-  const request = [fileObjects[currentSelection]]
-  deleteFiles(request, dispatch, updateDone, updateFailed)
+  const request = [id]
+  deleteFiles(request, dispatch, () => deleteFile(id), updateFailed)
 }

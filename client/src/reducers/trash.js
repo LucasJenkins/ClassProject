@@ -2,7 +2,8 @@ import {
   SET_UPDATE_FILES,
   UPDATE_BEGIN,
   UPDATE_DONE,
-  UPDATE_FAILED
+  UPDATE_FAILED,
+  DELETE_FILE
 } from '../action-types/index'
 
 const updateInitialState = {
@@ -35,6 +36,12 @@ export default function trashReducer (state = updateInitialState, action) {
       return {
         ...state,
         fileObjects: payload
+      }
+
+    case DELETE_FILE:
+      return {
+        ...state,
+        fileObjects: [...state.fileObjects.filter(fo => fo.id !== payload)]
       }
     default:
       return state

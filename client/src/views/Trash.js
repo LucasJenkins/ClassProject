@@ -1,6 +1,7 @@
 import React from 'react'
 import { Layout, Radio, Menu, Icon, List } from 'antd'
 import { Link } from 'react-router-dom'
+import ListView from '../components/ListViewTrash'
 
 const { Header, Content, Sider } = Layout
 
@@ -91,21 +92,7 @@ class Trash extends React.Component {
               }}
             >
               {this.state.view === 'list' ? (
-                <List
-                  // bordered
-                  dataSource={this.state.files}
-                  renderItem={item => (
-                    <List.Item>
-                      <Icon
-                        type='file'
-                        style={{
-                          padding: 5
-                        }}
-                      />
-                      {item}
-                    </List.Item>
-                  )}
-                />
+                <ListView />
               ) : (
                 <List
                   grid={{ gutter: 16, column: 4 }}

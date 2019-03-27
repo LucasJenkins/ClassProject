@@ -64,8 +64,8 @@ UploadModal.propTypes = {
   uploading: PropTypes.bool,
   // error: PropTypes.bool,
   errorMessage: PropTypes.string,
-  visible: PropTypes.bool,
-  onCancel: PropTypes.func
+  modalVisible: PropTypes.bool,
+  hideModal: PropTypes.func
 }
 
 const mapStateToProps = state => ({

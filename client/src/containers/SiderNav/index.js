@@ -57,7 +57,7 @@ const SiderWrapper = props => (
 )
 
 SiderWrapper.propTypes = {
-  addFiles: PropTypes.func,
+  showModal: PropTypes.func,
   uploadBegin: PropTypes.func
 }
 

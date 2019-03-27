@@ -91,8 +91,12 @@ class Home extends React.Component {
           >
             <div>
               <Radio.Group value='button'>
-                <Radio.Button value='list'>List</Radio.Button>
-                <Radio.Button value='grid'>Grid</Radio.Button>
+                <Radio.Button value='list' onClick={this.handleView}>
+                  List
+                </Radio.Button>
+                <Radio.Button value='grid' onClick={this.handleView}>
+                  Grid
+                </Radio.Button>
               </Radio.Group>
             </div>
           </Header>

@@ -44,7 +44,7 @@ export default function uploadReducer (state = uploadInitialState, action) {
         ...state,
         files: payload
       }
-    //= ==========
+
     case SHOW_MODAL:
       return {
         ...state,

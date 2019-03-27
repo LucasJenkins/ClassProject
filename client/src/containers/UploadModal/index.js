@@ -22,6 +22,7 @@ class UploadModal extends React.Component {
   }
 
   render () {
+    console.log(this.props)
     const { files, upload, uploading, /* error, */ errorMessage } = this.props
 
     let mappedFiles = []
@@ -37,10 +38,14 @@ class UploadModal extends React.Component {
     return (
       <Modal
         title='Upload File(s)'
-        visible={this.props.visible}
-        onOk={upload}
-        onCancel={this.props.onCancel}
+        visible={this.props.modalVisible}
+        onOk={() => {
+          upload()
+          this.props.hideModal()
+        }}
+        onCancel={this.props.hideModal}
         okText='Upload'
+        multiple
       >
         <h3>Files to upload:</h3>
         <div className='files'>{mappedFiles}</div>

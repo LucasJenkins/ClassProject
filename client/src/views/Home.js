@@ -127,12 +127,8 @@ class Home extends React.Component {
                 />
               )}
               <UploadModal
-                visible={this.state.visible}
-                onOk={this.handleOk}
-                onCancel={this.handleCancel}
-                fileInput={this.state.modalFileInput}
-                fileNames={this.state.fileNames}
-                multiple
+
+              // multiple
               />
             </Content>
           </Layout>

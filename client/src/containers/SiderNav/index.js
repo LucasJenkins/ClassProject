@@ -4,6 +4,8 @@ import 'antd/dist/antd.css'
 import { Layout, Menu, Icon, Button } from 'antd'
 import { Link } from 'react-router-dom'
 // import { uploadBegin } from '../../action-creators/upload'
+import { connect } from 'react-redux'
+import { showModal, hideModal } from '../../action-creators/upload'
 
 const { Sider } = Layout
 
@@ -29,7 +31,9 @@ const SiderWrapper = props => (
       size='large'
       style={{ margin: '0 0 40px 20px' }}
       onClick={() => {
-        props.addFiles()
+        console.log(props)
+        // props.addFiles()
+        props.showModal()
         props.uploadBegin()
       }}
     >
@@ -57,4 +61,18 @@ SiderWrapper.propTypes = {
   uploadBegin: PropTypes.func
 }
 
-export default SiderWrapper
+// export default SiderWrapper
+
+const mapStateToProps = state => ({
+  modalVisible: state.upload.modalVisible
+})
+
+const mapDispatchToProps = {
+  showModal,
+  hideModal
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SiderWrapper)

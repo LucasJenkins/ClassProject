@@ -2,6 +2,8 @@ import React from 'react'
 import { Drawer, Icon } from 'antd'
 import 'antd/dist/antd.css'
 import PropTypes from 'prop-types'
+// import DownloadButton from './DownloadButton'
+// import DeleteButton from './DeleteButton'
 
 export class FileInfo extends React.Component {
   constructor (props) {
@@ -24,6 +26,7 @@ export class FileInfo extends React.Component {
   }
 
   render () {
+    console.log(this.props.view)
     return (
       <div>
         <a
@@ -42,9 +45,17 @@ export class FileInfo extends React.Component {
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
+          view={this.props.view}
+          record={this.props.record}
         >
-          <p>Created: 3/25/19</p>
-          <p>Last Modified: 3/25/19</p>
+          <p>
+            <b>Created: </b>
+            {this.props.record.created}
+          </p>
+          <p>
+            <b>Size: </b>
+            {this.props.record.size}
+          </p>
         </Drawer>
       </div>
     )
@@ -52,7 +63,9 @@ export class FileInfo extends React.Component {
 }
 
 FileInfo.propTypes = {
-  value: PropTypes.any
+  value: PropTypes.any,
+  view: PropTypes.string,
+  record: PropTypes.any
 }
 
 export default FileInfo

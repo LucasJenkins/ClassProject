@@ -3,7 +3,7 @@ import 'antd/dist/antd.css'
 import './index.css'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Layout, List, Radio, Button } from 'antd'
+import { Layout, List, Radio } from 'antd'
 import { getAllFiles } from '../async-actions/getAllFiles'
 import SiderWrapper from '../containers/SiderNav'
 import UploadModal from '../containers/UploadModal'
@@ -90,18 +90,6 @@ class Home extends React.Component {
             }}
           >
             <div>
-              <Button
-                type='primary'
-                shape='circle'
-                icon='upload'
-                size='large'
-                onClick={() => {
-                  this.addFiles()
-                  this.uploadBegin()
-                }}
-              />
-            </div>
-            <div>
               <Radio.Group value='button'>
                 <Radio.Button value='list' onClick={this.handleView}>
                   List
@@ -131,7 +119,7 @@ class Home extends React.Component {
                   dataSource={this.state.fileNames}
                   renderItem={item => (
                     <List.Item>
-                      <FileInfo key={item} value={item}>
+                      <FileInfo key={item} value={item} view={this.state.view}>
                         Info
                       </FileInfo>
                     </List.Item>

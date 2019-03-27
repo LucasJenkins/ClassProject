@@ -115,11 +115,17 @@ class Home extends React.Component {
                 <ListView />
               ) : (
                 <List
-                  grid={{ gutter: 16, column: 4 }}
+                  grid={{ gutter: 10, column: 8 }}
                   dataSource={this.state.fileNames}
                   renderItem={item => (
-                    <List.Item>
-                      <FileInfo key={item} value={item} view={this.state.view}>
+                    <List.Item
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <FileInfo key={item} value={item}>
                         Info
                       </FileInfo>
                     </List.Item>

@@ -1,6 +1,6 @@
 import { fetch } from 'whatwg-fetch'
 
-export const createApi = url => (endpoint, method) => (
+export const createApi = url => (endpoint, method, getBody) => (
   request,
   dispatch,
   resolve,
@@ -16,7 +16,11 @@ export const createApi = url => (endpoint, method) => (
   })
     .then(response => {
       if (response.ok) {
-        response.json().then(body => dispatch(resolve(body)))
+        if (getBody) {
+          response.json().then(body => dispatch(resolve(body)))
+        } else {
+          dispatch(resolve())
+        }
       } else {
         response.json().then(({ Description }) => dispatch(reject(Description)))
       }

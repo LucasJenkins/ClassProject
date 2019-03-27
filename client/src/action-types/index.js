@@ -14,6 +14,7 @@ export const SET_DOWNLOAD_FILES = 'SET_DOWNLOAD_FILES'
 export const DOWNLOAD_FAILED = 'DOWNLOAD_FAILED'
 export const DOWNLOAD_BEGIN = 'DOWNLOAD_BEGIN'
 export const DOWNLOAD_DONE = 'DOWNLOAD_DONE'
+export const DELETE_FILE = 'DELETE_FILE'
 
 // Home Reducer
 export const SET_SELECTED_FILE = 'SET_SELECTED_FILE'
@@ -24,6 +25,7 @@ export const START_LOADING = 'START_LOADING'
 export const DONE_LOADING = 'DONE_LOADING'
 export const SET_VIEW_MODE_GRID = 'SET_VIEW_MODE_GRID'
 export const SET_VIEW_MODE_LIST = 'SET_VIEW_MODE_LIST'
+export const INSERT_FILES = 'INSERT_FILES'
 
 // Modal
 export const SHOW_MODAL = 'SHOW_MODAL'

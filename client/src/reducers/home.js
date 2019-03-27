@@ -6,7 +6,8 @@ import {
   START_LOADING,
   DONE_LOADING,
   SET_VIEW_MODE_GRID,
-  SET_VIEW_MODE_LIST
+  SET_VIEW_MODE_LIST,
+  INSERT_FILES
 } from '../action-types/index'
 
 const initialState = {
@@ -20,6 +21,12 @@ const initialState = {
 export default function homeReducer (state = initialState, action) {
   const { type, payload } = action
   switch (type) {
+    case INSERT_FILES:
+      return {
+        ...state,
+        fileList: [...state.fileList, ...payload]
+      }
+
     case SET_SELECTED_FILE:
       return {
         ...state,

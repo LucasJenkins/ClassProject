@@ -23,7 +23,7 @@ class UploadModal extends React.Component {
 
   render () {
     console.log(this.props)
-    const { files, upload, uploading, /* error, */ errorMessage } = this.props
+    const { files, upload, uploading, errorMessage } = this.props
 
     let mappedFiles = []
 
@@ -58,11 +58,9 @@ class UploadModal extends React.Component {
 
 UploadModal.propTypes = {
   setUploadFiles: PropTypes.func,
-  // uploadDone: PropTypes.func,
   files: PropTypes.array,
   upload: PropTypes.func,
   uploading: PropTypes.bool,
-  // error: PropTypes.bool,
   errorMessage: PropTypes.string,
   modalVisible: PropTypes.bool,
   hideModal: PropTypes.func

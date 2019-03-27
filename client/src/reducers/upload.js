@@ -23,8 +23,7 @@ export default function uploadReducer (state = uploadInitialState, action) {
         ...state,
         error: false,
         errorMessage: '',
-        uploading: true,
-        modalVisible: true
+        uploading: true
       }
     case UPLOAD_FAILED:
       return {
@@ -50,7 +49,7 @@ export default function uploadReducer (state = uploadInitialState, action) {
     case SHOW_MODAL:
       return {
         ...state,
-        modalVisible: false
+        modalVisible: true
       }
     case HIDE_MODAL:
       return {

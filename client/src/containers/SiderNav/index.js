@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
 import { Layout, Menu, Icon, Button } from 'antd'
-import { uploadBegin } from '../../action-creators/upload'
+import { showModal } from '../../action-creators/upload'
 import { Link } from 'react-router-dom'
-// import { uploadBegin } from '../../action-creators/upload'
 
 const { Sider } = Layout
 
@@ -30,7 +29,9 @@ const SiderWrapper = props => (
       icon='upload'
       size='large'
       style={{ margin: '0 0 40px 20px' }}
-      onClick={() => props.uploadBegin()}
+      onClick={() => {
+        props.showModal()
+      }}
     >
       Upload
     </Button>
@@ -61,11 +62,11 @@ const SiderWrapper = props => (
 )
 
 SiderWrapper.propTypes = {
-  uploadBegin: PropTypes.func
+  showModal: PropTypes.func
 }
 
 const mapDispatchToProps = dispatch => ({
-  uploadBegin: () => dispatch(uploadBegin())
+  showModal: () => dispatch(showModal())
 })
 
 export default connect(

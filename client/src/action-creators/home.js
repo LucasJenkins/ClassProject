@@ -6,7 +6,8 @@ import {
   START_LOADING,
   DONE_LOADING,
   SET_VIEW_MODE_GRID,
-  SET_VIEW_MODE_LIST
+  SET_VIEW_MODE_LIST,
+  INSERT_FILES
 } from '../action-types'
 import { createAction } from '../utils/redux'
 
@@ -19,3 +20,4 @@ export const startLoading = () => createAction(START_LOADING)
 export const doneLoading = files => createAction(DONE_LOADING, files)
 export const setViewModeGrid = () => createAction(SET_VIEW_MODE_GRID)
 export const setViewModeList = () => createAction(SET_VIEW_MODE_LIST)
+export const insertFiles = files => createAction(INSERT_FILES, files)

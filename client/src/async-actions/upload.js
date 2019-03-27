@@ -3,6 +3,7 @@ import {
   uploadDone,
   uploadFailed
 } from '../action-creators/upload'
+import { getAllFiles } from '../async-actions/getAllFiles'
 import { getBase64String } from '../utils/file'
 import { createFiles } from '../api'
 
@@ -22,7 +23,7 @@ export const upload = () => (dispatch, getState) => {
       }))
     )
   }
-  Promise.all(convertedFiles).then(request =>
-    createFiles(request, dispatch, uploadDone, uploadFailed)
-  )
+  Promise.all(convertedFiles)
+    .then(request => createFiles(request, dispatch, uploadDone, uploadFailed))
+    .then(dispatch(getAllFiles()))
 }

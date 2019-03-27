@@ -4,16 +4,17 @@ import {
   SET_CURRENT_FOLDER,
   SET_ERROR_MESSAGE,
   START_LOADING,
-  DONE_LOADING
+  DONE_LOADING,
+  SET_VIEW_MODE_GRID,
+  SET_VIEW_MODE_LIST
 } from '../action-types/index'
 
 const initialState = {
   fileList: [],
   errorMessage: '',
   error: false,
-  selectedFile: 0,
-  currentFolder: 0,
-  loading: false
+  loading: false,
+  viewMode: 'list'
 }
 
 export default function homeReducer (state = initialState, action) {
@@ -55,6 +56,18 @@ export default function homeReducer (state = initialState, action) {
         ...state,
         loading: false,
         fileList: payload
+      }
+
+    case SET_VIEW_MODE_GRID:
+      return {
+        ...state,
+        viewMode: 'grid'
+      }
+
+    case SET_VIEW_MODE_LIST:
+      return {
+        ...state,
+        viewMode: 'list'
       }
 
     default:

@@ -3,25 +3,29 @@ import {
   updateDone,
   updateFailed
 } from '../action-creators/updateFile'
+import { getAllFiles } from '../async-actions/getAllFiles'
+import { getAllTrash } from '../async-actions/getAllTrash'
 import { updateFiles } from '../api'
 
-export const trash = () => (dispatch, getState) => {
-  dispatch(updateBegin())
-  const { fileList, selectedFile } = getState().home
-  const request = [{ id: fileList[selectedFile].id, isTrash: true }]
-  updateFiles(request, dispatch, updateDone, updateFailed)
+const syncViews = () => dispatch => {
+  dispatch(getAllFiles())
+  dispatch(getAllTrash())
 }
 
-export const untrash = () => (dispatch, getState) => {
+export const trash = id => (dispatch, getState) => {
   dispatch(updateBegin())
-  const { fileObjects, currentSelection } = getState().update
-  const request = [{ id: fileObjects[currentSelection].id, isTrash: false }]
-  updateFiles(request, dispatch, updateDone, updateFailed)
+  const request = [{ id, isTrash: true, folderId: 0 }]
+  updateFiles(request, dispatch, syncViews, updateFailed)
 }
 
-export const rename = newName => (dispatch, getState) => {
+export const untrash = id => (dispatch, getState) => {
   dispatch(updateBegin())
-  const { fileList, selectedFile } = getState().home
-  const request = [{ id: fileList[selectedFile].id, name: newName }]
+  const request = [{ id, isTrash: false }]
+  updateFiles(request, dispatch, syncViews, updateFailed)
+}
+
+export const rename = (id, name) => (dispatch, getState) => {
+  dispatch(updateBegin())
+  const request = [{ id, name }]
   updateFiles(request, dispatch, updateDone, updateFailed)
 }

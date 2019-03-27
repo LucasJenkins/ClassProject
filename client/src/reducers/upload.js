@@ -37,7 +37,8 @@ export default function uploadReducer (state = uploadInitialState, action) {
         ...state,
         uploading: false,
         files: [],
-        error: false
+        error: false,
+        modalVisible: false
       }
     case SET_UPLOAD_FILES:
       return {

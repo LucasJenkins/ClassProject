@@ -8,7 +8,7 @@ import { getAllFiles } from '../async-actions/getAllFiles'
 import SiderWrapper from '../containers/SiderNav'
 import UploadModal from '../containers/UploadModal'
 import FileInfo from '../components/FileInfo'
-import { _Table } from '../components/Table'
+import ListView from '../components/ListView'
 
 import { showModal, hideModal } from '../action-creators/upload'
 
@@ -112,7 +112,7 @@ class Home extends React.Component {
               }}
             >
               {this.state.view === 'list' ? (
-                <_Table />
+                <ListView />
               ) : (
                 <List
                   grid={{ gutter: 16, column: 4 }}

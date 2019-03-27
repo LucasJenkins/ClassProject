@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { getAllFiles } from '../async-actions/getAllFiles'
 import { Table } from 'antd'
-import DeleteButton from './DeleteButton'
+import TrashButton from './TrashButton'
 import FileInfo from './FileInfo'
 import DownloadButton from './DownloadButton'
 
@@ -22,22 +22,28 @@ const columns = [
     dataIndex: 'created'
   },
   {
+    title: 'Size',
+    dataIndex: 'size',
+    key: 'size',
+    render: text => (
+      <span>{`${Math.ceil(Number.parseInt(text) / 1024)}KB`}</span>
+    )
+  },
+  {
     title: 'Action',
     key: 'action',
     render: (text, record) => (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <a href='javascript:;'>
-          <DeleteButton />
+          <TrashButton key={record.key} id={record.key} />
         </a>
-        <a href='javascript:;'>
-          <DownloadButton />
-        </a>
+        <DownloadButton key={record.key} id={record.key} />
       </div>
     )
   }
 ]
 
-export class _Table extends React.Component {
+class ListView extends React.Component {
   constructor (props) {
     super(props)
     this.start = this.start.bind(this)
@@ -49,25 +55,8 @@ export class _Table extends React.Component {
     }
   }
 
-  // componentDidMount () {
-  //   console.log(this.props)
-  //   this.props.getAllFiles()
-  // }
-
-  loadData () {
-    const allFiles = this.props.files
-    const data = []
-    if (this.props.files) {
-      for (let i = 0; i < allFiles.length; i++) {
-        data.push({
-          key: i,
-          name: allFiles[i].id,
-          created: allFiles[i].created
-        })
-      }
-    }
-
-    return data
+  componentDidMount () {
+    this.props.getAllFiles()
   }
 
   start () {
@@ -88,12 +77,21 @@ export class _Table extends React.Component {
   }
 
   render () {
+    const { files } = this.props
+    let mappedFiles = []
+    if (files) {
+      mappedFiles = files.map(file => ({
+        key: file.id,
+        name: file.name,
+        created: file.created,
+        size: file.size
+      }))
+    }
     const { selectedRowKeys } = this.state
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange
     }
-    const data = this.loadData()
     const hasSelected = selectedRowKeys.length > 0
     return (
       <div>
@@ -105,28 +103,27 @@ export class _Table extends React.Component {
         <Table
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={data}
+          dataSource={mappedFiles}
         />
       </div>
     )
   }
 }
 
-_Table.propTypes = {
-  // getAllFiles: PropTypes.func,
+ListView.propTypes = {
+  getAllFiles: PropTypes.func,
   files: PropTypes.array
 }
 
 const mapStateToProps = state => ({
-  files: state.home.fileList,
-  getAllFiles
+  files: state.home.fileList
 })
 
-const mapDispatchToProps = {
-  getAllFiles
-}
+const mapDispatchToProps = dispatch => ({
+  getAllFiles: () => dispatch(getAllFiles())
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(_Table)
+)(ListView)

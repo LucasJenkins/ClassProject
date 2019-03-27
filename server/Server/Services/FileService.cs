@@ -155,7 +155,7 @@ namespace FinalProjectFileManager.Services
 
     public IEnumerable<StorageItem> GetAllFromRoot()
     {
-      return _context.StorageItems.Where(file => file.FolderId == 0).ToList();
+      return _context.StorageItems.Where(file => file.FolderId == 0 && !file.IsTrash).ToList();
     }
 
     public IEnumerable<StorageItem> GetAllFromTrash()
@@ -171,15 +171,15 @@ namespace FinalProjectFileManager.Services
         Files.WriteToFile(storageItem.Guid, update.Data);
       }
 
-      if (update.FolderId != -1)
-      {
-        storageItem.FolderId = update.FolderId;
-      }
+      // if (update.FolderId != -1)
+      // {
+      //   storageItem.FolderId = update.FolderId;
+      // }
 
-      if (update.Name.Length > 0)
-      {
-        storageItem.Name = update.Name;
-      }
+      // if (update.Name.Length > 0)
+      // {
+      //   storageItem.Name = update.Name;
+      // }
 
       if (update.IsTrash)
       {
@@ -191,8 +191,6 @@ namespace FinalProjectFileManager.Services
         storageItem.IsTrash = update.IsTrash;
       }
 
-      _context.StorageItems.Update(storageItem);
-      _context.SaveChanges();
       return storageItem;
     }
 
@@ -203,6 +201,8 @@ namespace FinalProjectFileManager.Services
       {
         result.Add(UpdateItem(update));
       }
+      _context.StorageItems.UpdateRange(result);
+      _context.SaveChanges();
       return result;
     }
 

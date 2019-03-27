@@ -3,7 +3,7 @@ import composeEnhancers from '../middleware'
 
 import routeReducer from './routes'
 import uploadReducer from './upload'
-import trashReducer from './update'
+import trashReducer from './trash'
 import homeReducer from './home'
 
 const createReducer = () => {

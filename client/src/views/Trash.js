@@ -2,6 +2,8 @@ import React from 'react'
 import { Layout, Radio, Menu, Icon, List } from 'antd'
 import { Link } from 'react-router-dom'
 import ListView from '../components/ListViewTrash'
+import { connect } from 'react-redux'
+import { PropTypes } from 'prop-types'
 
 const { Header, Content, Sider } = Layout
 
@@ -22,6 +24,7 @@ class Trash extends React.Component {
   }
 
   render () {
+    const { files } = this.props
     return (
       <Layout>
         <Sider width={200}>
@@ -96,7 +99,7 @@ class Trash extends React.Component {
               ) : (
                 <List
                   grid={{ gutter: 10, column: 8 }}
-                  dataSource={this.state.files}
+                  dataSource={files}
                   renderItem={item => (
                     <List.Item
                       style={{
@@ -114,7 +117,7 @@ class Trash extends React.Component {
                           justifyContent: 'center'
                         }}
                       />
-                      {item}
+                      {item.name}
                     </List.Item>
                   )}
                 />
@@ -127,4 +130,12 @@ class Trash extends React.Component {
   }
 }
 
-export default Trash
+Trash.propTypes = {
+  files: PropTypes.array
+}
+
+const mapStateToProps = state => ({
+  files: state.trash.fileObjects
+})
+
+export default connect(mapStateToProps)(Trash)

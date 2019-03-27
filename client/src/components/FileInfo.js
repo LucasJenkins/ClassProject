@@ -36,17 +36,16 @@ export class FileInfo extends React.Component {
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
-        >
-          <p>Created: 3/25/19</p>
-          <p>Last Modified: 3/25/19</p>
-        </Drawer>
+          record={this.props.record}
+        />
       </div>
     )
   }
 }
 
 FileInfo.propTypes = {
-  value: PropTypes.any
+  value: PropTypes.any,
+  record: PropTypes.object
 }
 
 export default FileInfo

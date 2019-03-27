@@ -1,13 +1,13 @@
 import React from 'react'
 import 'antd/dist/antd.css'
 import './index.css'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Layout, List, Radio } from 'antd'
+import { Layout, List, Radio, Icon } from 'antd'
 import { getAllFiles } from '../async-actions/getAllFiles'
+
 import SiderWrapper from '../containers/SiderNav'
 import UploadModal from '../containers/UploadModal'
-import FileInfo from '../components/FileInfo'
 import ListView from '../components/ListView'
 
 import { showModal, hideModal } from '../action-creators/upload'
@@ -77,6 +77,7 @@ class Home extends React.Component {
   }
 
   render () {
+    const { files } = this.props
     return (
       <Layout>
         <SiderWrapper addFiles={this.showModal} />
@@ -116,7 +117,7 @@ class Home extends React.Component {
               ) : (
                 <List
                   grid={{ gutter: 10, column: 8 }}
-                  dataSource={this.state.fileNames}
+                  dataSource={files}
                   renderItem={item => (
                     <List.Item
                       style={{
@@ -125,9 +126,16 @@ class Home extends React.Component {
                         justifyContent: 'center'
                       }}
                     >
-                      <FileInfo key={item} value={item}>
-                        Info
-                      </FileInfo>
+                      <Icon
+                        type='file'
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          fontSize: '40px',
+                          justifyContent: 'center'
+                        }}
+                      />
+                      {item.name}
                     </List.Item>
                   )}
                 />
@@ -146,11 +154,11 @@ class Home extends React.Component {
 
 Home.propTypes = {
   // getAllFiles: PropTypes.func,
-  // files: PropTypes.array
+  files: PropTypes.array
 }
 
 const mapStateToProps = state => ({
-  files: state.upload.files
+  files: state.home.fileList
 })
 
 const mapDispatchToProps = {

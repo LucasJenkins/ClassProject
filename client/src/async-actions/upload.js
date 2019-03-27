@@ -3,9 +3,15 @@ import {
   uploadDone,
   uploadFailed
 } from '../action-creators/upload'
-import { getAllFiles } from '../async-actions/getAllFiles'
+
+import { insertFiles } from '../action-creators/home'
 import { getBase64String } from '../utils/file'
 import { createFiles } from '../api'
+
+const syncView = data => dispatch => {
+  dispatch(uploadDone(data))
+  dispatch(insertFiles(data))
+}
 
 export const upload = () => (dispatch, getState) => {
   dispatch(uploadBegin())
@@ -23,7 +29,8 @@ export const upload = () => (dispatch, getState) => {
       }))
     )
   }
-  Promise.all(convertedFiles)
-    .then(request => createFiles(request, dispatch, uploadDone, uploadFailed))
-    .then(dispatch(getAllFiles()))
+
+  Promise.all(convertedFiles).then(request =>
+    createFiles(request, dispatch, syncView, uploadFailed)
+  )
 }

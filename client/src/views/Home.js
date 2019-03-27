@@ -11,7 +11,6 @@ import FileInfo from '../components/FileInfo'
 import { _Table } from '../components/Table'
 
 import { showModal, hideModal } from '../action-creators/upload'
-import { modalVisible } from '../reducers/upload'
 
 const { Content, Header } = Layout
 
@@ -149,8 +148,7 @@ Home.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  files: state.upload.files,
-  modalVisible: state.upload.modalVisible
+  files: state.upload.files
 })
 
 const mapDispatchToProps = {

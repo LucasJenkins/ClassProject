@@ -92,29 +92,53 @@ class Trash extends React.Component {
             >
               {this.state.view === 'list' ? (
                 <List
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'left',
+                    alignContent: 'flex-start'
+                  }}
                   // bordered
                   dataSource={this.state.files}
                   renderItem={item => (
-                    <List.Item>
+                    <List.Item
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center'
+                      }}
+                    >
                       <Icon
                         type='file'
                         style={{
-                          padding: 5
+                          display: 'flex',
+                          flexDirection: 'column',
+                          fontSize: '40px'
                         }}
                       />
-                      {item}
+                      <span>{item}</span>
                     </List.Item>
                   )}
                 />
               ) : (
                 <List
-                  grid={{ gutter: 16, column: 4 }}
+                  grid={{ gutter: 10, column: 8 }}
                   dataSource={this.state.files}
                   renderItem={item => (
-                    <List.Item>
+                    <List.Item
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center'
+                      }}
+                    >
                       <Icon
                         type='file'
-                        style={{ display: 'flex', flexDirection: 'column' }}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          fontSize: '40px',
+                          justifyContent: 'center'
+                        }}
                       />
                       {item}
                     </List.Item>

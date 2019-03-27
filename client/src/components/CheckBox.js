@@ -2,9 +2,7 @@ import React from 'react'
 import { Checkbox } from 'antd'
 
 export class CheckBox extends React.Component {
-  onChange (e) {
-    console.log(e)
-  }
+  onChange (e) {}
 
   render () {
     return <Checkbox onChange={event => console.log(event)} />

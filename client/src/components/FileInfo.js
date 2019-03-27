@@ -26,7 +26,6 @@ export class FileInfo extends React.Component {
   }
 
   render () {
-    console.log(this.props.view)
     return (
       <div>
         <a

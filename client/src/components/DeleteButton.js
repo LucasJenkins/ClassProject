@@ -18,7 +18,6 @@ export class DeleteButton extends React.Component {
   }
 
   handleOk (e) {
-    console.log(e)
     this.setState({
       visible: false
     })
@@ -26,7 +25,6 @@ export class DeleteButton extends React.Component {
   }
 
   handleCancel (e) {
-    console.log(e)
     this.setState({
       visible: false
     })

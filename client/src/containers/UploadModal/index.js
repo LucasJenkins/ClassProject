@@ -22,7 +22,6 @@ class UploadModal extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     const { files, upload, uploading, errorMessage } = this.props
 
     let mappedFiles = []

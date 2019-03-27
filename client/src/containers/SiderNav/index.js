@@ -40,7 +40,7 @@ const SiderWrapper = props => (
       <Menu.Item style={{ margin: '30px' }}>
         {/* <Icon type='home' style={{ fontSize: '25px' }} /> Home
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         style={{ margin: '30px' }}
         onClick={() => {
           props.uploadBegin()

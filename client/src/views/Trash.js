@@ -18,6 +18,7 @@ class Trash extends React.Component {
   }
 
   handleView (e) {
+    console.log(this.state)
     this.setState({
       view: e.target.value
     })

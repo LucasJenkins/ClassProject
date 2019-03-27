@@ -1,7 +1,9 @@
 import React from 'react'
-import { Drawer } from 'antd'
+import { Drawer, Icon } from 'antd'
 import 'antd/dist/antd.css'
 import PropTypes from 'prop-types'
+// import DownloadButton from './DownloadButton'
+// import DeleteButton from './DeleteButton'
 
 export class FileInfo extends React.Component {
   constructor (props) {
@@ -24,9 +26,16 @@ export class FileInfo extends React.Component {
   }
 
   render () {
+    console.log(this.props.view)
     return (
       <div>
-        <a type='primary' onClick={this.showDrawer} value={this.props.value}>
+        <a
+          type='primary'
+          onClick={this.showDrawer}
+          value={this.props.value}
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <Icon type='file' style={{ fontSize: '25px' }} />
           {this.props.value}
         </a>
 
@@ -36,8 +45,18 @@ export class FileInfo extends React.Component {
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
+          view={this.props.view}
           record={this.props.record}
-        />
+        >
+          <p>
+            <b>Created: </b>
+            {this.props.record.created}
+          </p>
+          <p>
+            <b>Size: </b>
+            {this.props.record.size}
+          </p>
+        </Drawer>
       </div>
     )
   }
@@ -45,7 +64,8 @@ export class FileInfo extends React.Component {
 
 FileInfo.propTypes = {
   value: PropTypes.any,
-  record: PropTypes.object
+  view: PropTypes.string,
+  record: PropTypes.any
 }
 
 export default FileInfo

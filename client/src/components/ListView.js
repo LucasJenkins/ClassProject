@@ -11,9 +11,11 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    render: text => (
+    render: (text, record) => (
       <a href='javascript:;'>
-        <FileInfo value={text}>{text}</FileInfo>
+        <FileInfo value={text} record={record}>
+          {text}
+        </FileInfo>
       </a>
     )
   },

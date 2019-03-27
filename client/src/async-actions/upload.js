@@ -16,6 +16,8 @@ export const upload = () => (dispatch, getState) => {
         name: file.name,
         folderId: 0,
         isFolder: false,
+        size: file.size,
+        type: file.type,
         data: encodedString
       }))
     )

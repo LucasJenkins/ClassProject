@@ -12,9 +12,9 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     render: (text, record) => (
-        <FileInfo record={record} value={text}>
-          {text}
-        </FileInfo>
+      <FileInfo record={record} value={text}>
+        {text}
+      </FileInfo>
     )
   },
   {

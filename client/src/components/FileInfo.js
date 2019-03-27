@@ -32,9 +32,9 @@ export class FileInfo extends React.Component {
           type='primary'
           onClick={this.showDrawer}
           value={this.props.value}
-          style={{ display: 'flex', flexDirection: 'column' }}
+          style={{ display: 'flex', flexDirection: 'row' }}
         >
-          <Icon type='file' style={{ fontSize: '25px' }} />
+          <Icon type='file' style={{ fontSize: '25px', marginRight: '10px' }} />
           {this.props.value}
         </a>
 

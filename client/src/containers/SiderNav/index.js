@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import 'antd/dist/antd.css'
-import { Layout, Menu, Icon } from 'antd'
+import { Layout, Menu, Icon, Button } from 'antd'
 import { uploadBegin } from '../../action-creators/upload'
+import { Link } from 'react-router-dom'
+// import { uploadBegin } from '../../action-creators/upload'
 
 const { Sider } = Layout
 
@@ -22,9 +24,20 @@ const SiderWrapper = props => (
       SmartShare
     </h1>
 
+    <Button
+      type='primary'
+      shape='round'
+      icon='upload'
+      size='large'
+      style={{ margin: '0 0 40px 20px' }}
+      onClick={() => props.uploadBegin()}
+    >
+      Upload
+    </Button>
+
     <Menu mode='vertical' theme='dark' style={{ height: '100%' }}>
       <Menu.Item style={{ margin: '30px' }}>
-        <Icon type='home' style={{ fontSize: '25px' }} /> Home
+        {/* <Icon type='home' style={{ fontSize: '25px' }} /> Home
       </Menu.Item>
       <Menu.Item
         style={{ margin: '30px' }}
@@ -32,10 +45,16 @@ const SiderWrapper = props => (
           props.uploadBegin()
         }}
       >
-        <Icon type='upload' style={{ fontSize: '25px' }} /> Upload
+        <Icon type='upload' style={{ fontSize: '25px' }} /> Upload */}
+        <Link to='/'>
+          <Icon type='home' style={{ fontSize: '25px' }} /> Home
+        </Link>
       </Menu.Item>
+
       <Menu.Item style={{ margin: '30px' }}>
-        <Icon type='delete' style={{ fontSize: '25px' }} /> Trash
+        <Link to='/trash'>
+          <Icon type='delete' style={{ fontSize: '25px' }} /> Trash
+        </Link>
       </Menu.Item>
     </Menu>
   </Sider>

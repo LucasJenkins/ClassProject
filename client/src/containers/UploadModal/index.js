@@ -5,7 +5,7 @@ import './index.css'
 import { connect } from 'react-redux'
 import { upload } from '../../async-actions/upload'
 import PropTypes from 'prop-types'
-import { setUploadFiles } from '../../action-creators/upload'
+import { setUploadFiles, hideModal } from '../../action-creators/upload'
 
 class UploadModal extends React.Component {
   constructor (props) {
@@ -27,14 +27,15 @@ class UploadModal extends React.Component {
         title='Upload File(s)'
         visible={visible}
         onOk={upload}
-        onCancel={this.props.onCancel}
         okText='Upload'
+        onCancel={hideModal}
       >
         <h3>Files to upload:</h3>
         <div className='files'>{mappedFiles}</div>
         <input type='file' multiple onChange={this.handleChange} />
         <div>{uploading ? 'Uploading ... ' : ''}</div>
         <div className='error'>{errorMessage}</div>
+        <button onClick={() => Modal.destroyAll()}>Close</button>
       </Modal>
     )
   }
@@ -46,8 +47,7 @@ UploadModal.propTypes = {
   upload: PropTypes.func,
   uploading: PropTypes.bool,
   errorMessage: PropTypes.string,
-  visible: PropTypes.bool,
-  onCancel: PropTypes.func
+  visible: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
@@ -58,10 +58,11 @@ const mapStateToProps = state => ({
   visible: state.upload.modalVisible
 })
 
-const mapDispatchToProps = {
-  setUploadFiles,
-  upload
-}
+const mapDispatchToProps = dispatch => ({
+  hideModal: () => dispatch(hideModal()),
+  setUploadFiles: () => dispatch(setUploadFiles()),
+  upload: () => dispatch(upload())
+})
 
 export default connect(
   mapStateToProps,

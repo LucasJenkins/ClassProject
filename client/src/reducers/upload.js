@@ -2,7 +2,9 @@ import {
   SET_UPLOAD_FILES,
   UPLOAD_BEGIN,
   UPLOAD_DONE,
-  UPLOAD_FAILED
+  UPLOAD_FAILED,
+  SHOW_MODAL,
+  HIDE_MODAL
 } from '../action-types/index'
 
 const uploadInitialState = {
@@ -43,6 +45,17 @@ export default function uploadReducer (state = uploadInitialState, action) {
       return {
         ...state,
         files: payload
+      }
+
+    case SHOW_MODAL:
+      return {
+        ...state,
+        modalVisible: false
+      }
+    case HIDE_MODAL:
+      return {
+        ...state,
+        modalVisible: false
       }
     default:
       return state

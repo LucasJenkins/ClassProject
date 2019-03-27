@@ -1,5 +1,6 @@
 import React from 'react'
 import { Layout, Radio, Menu, Icon, List } from 'antd'
+import { Link } from 'react-router-dom'
 
 const { Header, Content, Sider } = Layout
 
@@ -36,9 +37,15 @@ class Trash extends React.Component {
             SmartShare
           </h1>
 
-          <Menu mode='vertical' theme='dark' style={{ height: '100%' }}>
+          <Menu
+            mode='vertical'
+            theme='dark'
+            style={{ height: '100%', marginTop: 95 }}
+          >
             <Menu.Item style={{ margin: '30px' }}>
-              <Icon type='home' style={{ fontSize: '25px' }} /> Home
+              <Link to='/'>
+                <Icon type='home' style={{ fontSize: '25px' }} /> Home
+              </Link>
             </Menu.Item>
 
             <Menu.Item style={{ margin: '30px' }}>

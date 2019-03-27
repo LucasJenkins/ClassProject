@@ -24,3 +24,7 @@ export const START_LOADING = 'START_LOADING'
 export const DONE_LOADING = 'DONE_LOADING'
 export const SET_VIEW_MODE_GRID = 'SET_VIEW_MODE_GRID'
 export const SET_VIEW_MODE_LIST = 'SET_VIEW_MODE_LIST'
+
+// Modal
+export const SHOW_MODAL = 'SHOW_MODAL'
+export const HIDE_MODAL = 'HIDE_MODAL'

@@ -5,7 +5,7 @@ import { getAllTrash } from '../async-actions/getAllTrash'
 import { Table } from 'antd'
 import DeleteButton from './SmartDeleteButton'
 import FileInfo from './FileInfo'
-import DownloadButton from './DownloadButton'
+import RestoreButton from './RestoreButton'
 
 const columns = [
   {
@@ -35,9 +35,9 @@ const columns = [
     render: (text, record) => (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <a href='javascript:;'>
-          <DeleteButton key={record.key} id={record.key} />
+          <DeleteButton key={record.key} id={record.key} value={record.name} />
         </a>
-        <DownloadButton key={record.key} id={record.key} />
+        <RestoreButton key={record.key} id={record.key} />
       </div>
     )
   }

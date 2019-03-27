@@ -47,7 +47,7 @@ export class DeleteButton extends React.Component {
           onCancel={this.handleCancel}
           value={this.props.value}
         >
-          <p>Are you sure you want to delete the following file</p>
+          <p>Are you sure you want to delete the following file?</p>
           <p>{this.props.value}</p>
         </Modal>
       </div>
